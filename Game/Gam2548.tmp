@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://y3q547fkfi4g"]
+
+[ext_resource type="Script" path="res://Game/game.gd" id="1_30xni"]
+[ext_resource type="Script" path="res://Game/control.gd" id="2_fo51i"]
+[ext_resource type="Script" path="res://Game/camera_2d.gd" id="2_ke4h0"]
+[ext_resource type="PackedScene" uid="uid://bjpm265g8ov4p" path="res://Huey/hue.tscn" id="3_5kmum"]
+[ext_resource type="Texture2D" uid="uid://bllbru41x5c11" path="res://Game/up.png" id="3_34jfi"]
+[ext_resource type="Texture2D" uid="uid://dfn6ul1c1syjf" path="res://Game/down.png" id="4_vk78k"]
+[ext_resource type="Texture2D" uid="uid://db3x46nmg61ym" path="res://Game/left.png" id="5_526th"]
+[ext_resource type="Script" path="res://Game/jump.gd" id="8_tswjb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exxlb"]
+size = Vector2(360, 100)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_30xni")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BTN_Exit" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "[x]"
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_fo51i")
+
+[node name="TSB_Jump" type="TouchScreenButton" parent="CanvasLayer/Control"]
+position = Vector2(5, -150)
+texture_normal = ExtResource("3_34jfi")
+texture_pressed = ExtResource("3_34jfi")
+
+[node name="TSB_Down" type="TouchScreenButton" parent="CanvasLayer/Control"]
+position = Vector2(105, -50)
+texture_normal = ExtResource("4_vk78k")
+texture_pressed = ExtResource("4_vk78k")
+
+[node name="TSB_Left" type="TouchScreenButton" parent="CanvasLayer/Control"]
+position = Vector2(5, -100)
+texture_normal = ExtResource("5_526th")
+texture_pressed = ExtResource("5_526th")
+
+[node name="TSB_Right" type="TouchScreenButton" parent="CanvasLayer/Control"]
+position = Vector2(265, -100)
+texture_normal = ExtResource("5_526th")
+texture_pressed = ExtResource("5_526th")
+
+[node name="Hue" parent="." instance=ExtResource("3_5kmum")]
+position = Vector2(170, -190)
+
+[node name="Cell Container" type="Node" parent="." groups=["Cell Container"]]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(180, -300)
+limit_left = 0
+limit_right = 360
+limit_bottom = 0
+script = ExtResource("2_ke4h0")
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Border" type="StaticBody2D" parent="."]
+position = Vector2(0, -1900)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+position = Vector2(180, 1950)
+shape = SubResource("RectangleShape2D_exxlb")
+
+[node name="Jump" type="Area2D" parent="."]
+position = Vector2(180, 0)
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("8_tswjb")
+
+[node name="Sprite2D" type="Sprite2D" parent="Jump"]
+texture = ExtResource("3_34jfi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Jump"]
+polygon = PackedVector2Array(-170, -40, 170, -40, 170, -10, 70, -10, 70, 40, -70, 40, -70, -10, -170, -10)
+
+[connection signal="pressed" from="CanvasLayer/Control/TSB_Jump" to="CanvasLayer/Control" method="_on_tsb_jump_pressed"]

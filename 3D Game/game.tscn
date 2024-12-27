@@ -1,0 +1,116 @@
+[gd_scene load_steps=15 format=3 uid="uid://c20oooip6mst0"]
+
+[ext_resource type="Script" path="res://3D Game/game.gd" id="1_nvd2h"]
+[ext_resource type="Script" path="res://3D Game/blocks.gd" id="2_ytqc3"]
+[ext_resource type="PackedScene" uid="uid://bg6ayweo3rri6" path="res://3D Huey/huey.tscn" id="3_l74er"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jvfal"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_6n7pu"]
+sky_material = SubResource("ProceduralSkyMaterial_jvfal")
+
+[sub_resource type="Environment" id="Environment_1ehvf"]
+background_mode = 3
+sky = SubResource("Sky_6n7pu")
+glow_enabled = true
+glow_intensity = 3.78
+glow_strength = 0.85
+glow_bloom = 0.13
+glow_blend_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdn1a"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sah6f"]
+material = SubResource("StandardMaterial3D_cdn1a")
+size = Vector3(1, 16, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prupj"]
+size = Vector3(1, 16, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wxlh"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8bgb2"]
+material = SubResource("StandardMaterial3D_5wxlh")
+size = Vector3(7, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e84gj"]
+size = Vector3(7, 1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_timv4"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hwt70"]
+material = SubResource("StandardMaterial3D_timv4")
+size = Vector3(7, 16, 1)
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_nvd2h")
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1ehvf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.868043, 0.272077, -0.415302, -0.145367, 0.939097, 0.311393, 0.474732, -0.209932, 0.854727, 0, 33.668, 0)
+light_energy = 0.448
+light_indirect_energy = 3.943
+light_volumetric_fog_energy = 1.368
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.507, 4.73891, 7.58159)
+
+[node name="Wall Anchor" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.507, 0, -7.582)
+
+[node name="Left" type="StaticBody3D" parent="Camera3D/Wall Anchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D/Wall Anchor/Left"]
+mesh = SubResource("BoxMesh_sah6f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/Wall Anchor/Left"]
+shape = SubResource("BoxShape3D_prupj")
+
+[node name="Right" type="StaticBody3D" parent="Camera3D/Wall Anchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D/Wall Anchor/Right"]
+mesh = SubResource("BoxMesh_sah6f")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Camera3D/Wall Anchor/Right"]
+shape = SubResource("BoxShape3D_prupj")
+
+[node name="Solids" type="Node3D" parent="."]
+
+[node name="Base" type="StaticBody3D" parent="Solids"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.499719, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Solids/Base"]
+mesh = SubResource("BoxMesh_8bgb2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Solids/Base"]
+shape = SubResource("BoxShape3D_e84gj")
+
+[node name="Back" type="StaticBody3D" parent="Solids"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.499719, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Solids/Back"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -1.5)
+mesh = SubResource("BoxMesh_hwt70")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Solids/Back"]
+shape = SubResource("BoxShape3D_e84gj")
+
+[node name="Blocks" type="Node3D" parent="."]
+script = ExtResource("2_ytqc3")
+
+[node name="Huey" parent="." instance=ExtResource("3_l74er")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.447, 1.66, 0.5)

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy22vxfxtqr2j"]
+
+[ext_resource type="Script" path="res://Cell/cell.gd" id="1_172ab"]
+[ext_resource type="Texture2D" uid="uid://dbofxlgjy7wvu" path="res://Cell/HB_Palette.png" id="2_3rej3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vyyt"]
+size = Vector2(100, 100)
+
+[node name="Cell" type="Node2D" groups=["Cell"]]
+scale = Vector2(0.72, 0.72)
+script = ExtResource("1_172ab")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_4vyyt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_3rej3")
+hframes = 10
+vframes = 2
+frame = 3

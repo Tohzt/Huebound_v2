@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfvxb051b3rbn"]
+
+[ext_resource type="Script" path="res://input/tap_input_container.gd" id="1_ip8q2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0w2p2"]
+
+[node name="Tap Input Container" type="Node2D"]
+script = ExtResource("1_ip8q2")
+
+[node name="Tap Marker" type="MeshInstance2D" parent="."]
+modulate = Color(1, 1, 1, 0.262745)
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(40.0454, 40)
+mesh = SubResource("SphereMesh_0w2p2")
+
+[node name="Start Marker" type="MeshInstance2D" parent="."]
+modulate = Color(1, 1, 1, 0.262745)
+position = Vector2(0, 8.58307e-06)
+scale = Vector2(60.068, 60)
+mesh = SubResource("SphereMesh_0w2p2")

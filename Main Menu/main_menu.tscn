@@ -1,0 +1,129 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfpfr4n2qwii4"]
+
+[ext_resource type="Script" path="res://Main Menu/main_menu.gd" id="1_pb3t0"]
+[ext_resource type="Script" path="res://Main Menu/center_container.gd" id="2_a4c85"]
+[ext_resource type="Script" path="res://Main Menu/settings_options.gd" id="3_5may6"]
+[ext_resource type="PackedScene" uid="uid://iffpd13twfxi" path="res://Main Menu/cell_select.tscn" id="4_vui36"]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_pb3t0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Container" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_a4c85")
+
+[node name="Menu Options" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+
+[node name="BTN_Start" type="Button" parent="Container/Menu Options"]
+layout_mode = 2
+text = "START"
+
+[node name="BTN_Settings" type="Button" parent="Container/Menu Options"]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="BTN_EXIT" type="Button" parent="Container/Menu Options"]
+layout_mode = 2
+text = "EXIT"
+
+[node name="Settings Options" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+script = ExtResource("3_5may6")
+
+[node name="Label2" type="Label" parent="Container/Settings Options"]
+layout_mode = 2
+
+[node name="BTN_Back" type="Button" parent="Container/Settings Options"]
+layout_mode = 2
+text = "Back"
+
+[node name="GridContainer" type="GridContainer" parent="Container/Settings Options"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 5
+
+[node name="Cell Select" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
+layout_mode = 2
+
+[node name="Cell Select2" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
+layout_mode = 2
+index = 1
+color = Color(1, 1, 1, 1)
+
+[node name="Cell Select3" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
+layout_mode = 2
+index = 2
+color = Color(1, 0, 0.541176, 1)
+
+[node name="Cell Select4" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
+layout_mode = 2
+index = 3
+color = Color(0, 0.909804, 0.992157, 1)
+
+[node name="Cell Select5" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
+layout_mode = 2
+index = 4
+color = Color(1, 0.937255, 0, 1)
+
+[node name="Cell Select6" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
+layout_mode = 2
+index = 5
+color = Color(1, 0.494118, 0, 1)
+
+[node name="Cell Select7" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
+layout_mode = 2
+index = 6
+color = Color(0.988235, 0, 1, 1)
+
+[node name="Cell Select8" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
+layout_mode = 2
+index = 7
+color = Color(0, 0, 1, 1)
+
+[node name="Cell Select9" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
+layout_mode = 2
+index = 8
+color = Color(0, 1, 0, 1)
+
+[node name="Cell Select10" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
+layout_mode = 2
+index = 9
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Container/Settings Options"]
+layout_mode = 2
+
+[node name="on-screen input" type="CheckBox" parent="Container/Settings Options"]
+layout_mode = 2
+text = "On-Screen Input: "
+
+[connection signal="pressed" from="Container/Menu Options/BTN_Start" to="." method="_on_btn_start_pressed"]
+[connection signal="pressed" from="Container/Menu Options/BTN_Settings" to="Container" method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="Container/Menu Options/BTN_EXIT" to="." method="_on_btn_exit_pressed"]
+[connection signal="pressed" from="Container/Settings Options/BTN_Back" to="Container" method="_on_btn_back_pressed"]
+[connection signal="pressed" from="Container/Settings Options/on-screen input" to="Container/Settings Options" method="_on_onscreen_input_pressed"]

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5bfv3u5usv60"]
+
+[ext_resource type="Script" path="res://3D Block/block.gd" id="1_srra7"]
+[ext_resource type="Texture2D" uid="uid://dcnnl5wb8tkhj" path="res://3D Game/src/textures/cube_nomal.png" id="2_1nkjb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8pltr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qkyk"]
+shading_mode = 2
+specular_mode = 1
+disable_ambient_light = true
+albedo_color = Color(0, 1, 1, 1)
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture = ExtResource("2_1nkjb")
+roughness_texture_channel = 1
+emission = Color(0, 1, 1, 1)
+emission_energy_multiplier = 5.57
+emission_on_uv2 = true
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_texture = ExtResource("2_1nkjb")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_babco"]
+
+[node name="Block" type="RigidBody3D" groups=["Block"]]
+collision_layer = 2
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_srra7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_8pltr")
+surface_material_override/0 = SubResource("StandardMaterial3D_1qkyk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_babco")

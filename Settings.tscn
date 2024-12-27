@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cawwh47lnxice"]
+
+[ext_resource type="Script" path="res://settings.gd" id="1_nuhwo"]
+
+[node name="Settings" type="Node"]
+script = ExtResource("1_nuhwo")
+tap_input = true
+item_frequency = 5
