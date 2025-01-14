@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://y3q547fkfi4g"]
+[gd_scene load_steps=13 format=3 uid="uid://y3q547fkfi4g"]
 
 [ext_resource type="Script" path="res://Game/game.gd" id="1_30xni"]
 [ext_resource type="Script" path="res://Game/control.gd" id="2_fo51i"]
@@ -7,18 +7,31 @@
 [ext_resource type="Texture2D" uid="uid://bllbru41x5c11" path="res://Game/up.png" id="3_34jfi"]
 [ext_resource type="Script" path="res://Game/v_box_container.gd" id="4_do4el"]
 [ext_resource type="Texture2D" uid="uid://dfn6ul1c1syjf" path="res://Game/down.png" id="4_vk78k"]
+[ext_resource type="Texture2D" uid="uid://dp68qev5501qm" path="res://UI/UI_Frame.png" id="5_4mfrm"]
 [ext_resource type="Texture2D" uid="uid://db3x46nmg61ym" path="res://Game/left.png" id="5_526th"]
-[ext_resource type="Script" path="res://Game/joystick.gd" id="9_fmrjm"]
+[ext_resource type="Texture2D" uid="uid://bja18oj4hvj5j" path="res://Cell/src/edge.png" id="5_xm3j0"]
+[ext_resource type="Script" path="res://Game/lb_input_name.gd" id="6_673ry"]
+[ext_resource type="PackedScene" uid="uid://c1lhapr6y2nxb" path="res://Game/Border/Border.tscn" id="9_tmpff"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_30xni")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(180, -320)
+position = Vector2(360, -640)
 limit_left = 0
-limit_right = 360
-limit_bottom = 0
+limit_right = 720
+limit_bottom = 60
 script = ExtResource("2_ke4h0")
+
+[node name="Border_Right" parent="Camera2D" instance=ExtResource("9_tmpff")]
+position = Vector2(360, 0)
+rotation = -1.57079
+scale = Vector2(22, 1)
+
+[node name="Border_Left" parent="Camera2D" instance=ExtResource("9_tmpff")]
+position = Vector2(-360, 0)
+rotation = 1.57079
+scale = Vector2(22, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -33,29 +46,17 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("2_fo51i")
 
-[node name="Top Row" type="HBoxContainer" parent="CanvasLayer/Control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_bottom = 31.0
+anchor_bottom = 1.0
+offset_top = -60.0
 grow_horizontal = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Top Row"]
-layout_mode = 2
-script = ExtResource("4_do4el")
-
-[node name="Label_Height" type="Label" parent="CanvasLayer/Control/Top Row/VBoxContainer"]
-layout_mode = 2
-text = "Current: "
-
-[node name="Label_Height_Max" type="Label" parent="CanvasLayer/Control/Top Row/VBoxContainer"]
-layout_mode = 2
-text = "All Time: "
-
-[node name="BTN_Exit" type="Button" parent="CanvasLayer/Control/Top Row"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "   [x]   "
+grow_vertical = 0
+texture = ExtResource("5_xm3j0")
 
 [node name="Bot_Right" type="PanelContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -64,11 +65,16 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 8.60999
+offset_top = -49.12
+offset_right = 8.60999
+offset_bottom = -49.12
 grow_horizontal = 0
 grow_vertical = 0
 
 [node name="TSB_Right" type="TouchScreenButton" parent="CanvasLayer/Control/Bot_Right"]
-position = Vector2(-100, -100)
+position = Vector2(-200, -200)
+scale = Vector2(2, 2)
 texture_normal = ExtResource("5_526th")
 texture_pressed = ExtResource("5_526th")
 
@@ -79,11 +85,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = 4.98999
+offset_top = -49.12
+offset_right = 4.98999
+offset_bottom = -49.12
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="TSB_Down" type="TouchScreenButton" parent="CanvasLayer/Control/Bot_Bot"]
-position = Vector2(-74, -50)
+position = Vector2(-153.92, -101.955)
+scale = Vector2(2, 2)
 texture_normal = ExtResource("4_vk78k")
 texture_pressed = ExtResource("4_vk78k")
 
@@ -92,35 +103,131 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_left = 5.165
+offset_top = -49.12
+offset_right = 5.165
+offset_bottom = -49.12
 grow_vertical = 0
 
 [node name="TSB_Jump" type="TouchScreenButton" parent="CanvasLayer/Control/Bot_Left"]
-position = Vector2(6, -150)
+position = Vector2(6, -290)
+scale = Vector2(2, 2)
 texture_normal = ExtResource("3_34jfi")
 texture_pressed = ExtResource("3_34jfi")
 
 [node name="TSB_Left" type="TouchScreenButton" parent="CanvasLayer/Control/Bot_Left"]
-position = Vector2(10, -100)
+position = Vector2(10, -200)
+scale = Vector2(2, 2)
 texture_normal = ExtResource("5_526th")
 texture_pressed = ExtResource("5_526th")
+
+[node name="Bottom Row" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 700.0
+offset_bottom = 1260.0
+script = ExtResource("4_do4el")
+
+[node name="Label_Height_Max" type="Label" parent="CanvasLayer/Control/Bottom Row"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 32
+text = "All Time: "
+
+[node name="Label_Height" type="Label" parent="CanvasLayer/Control/Bottom Row"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 32
+text = "Current: "
+
+[node name="BTN_Exit" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -97.0
+offset_bottom = 94.0
+grow_horizontal = 0
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 32
+text = "   [x]   "
+
+[node name="LB_InputName" type="NinePatchRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_4mfrm")
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
+script = ExtResource("6_673ry")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/LB_InputName"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/LB_InputName/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/LB_InputName/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "New High Score!!"
+
+[node name="InputName" type="LineEdit" parent="CanvasLayer/Control/LB_InputName/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Enter your Name"
+alignment = 1
+max_length = 30
+drag_and_drop_selection_enabled = false
+caret_blink = true
+
+[node name="Submit Score" type="Button" parent="CanvasLayer/Control/LB_InputName/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Submit
+"
 
 [node name="Hue" parent="." instance=ExtResource("3_5kmum")]
 position = Vector2(170, -120)
 
 [node name="Cell Container" type="Node" parent="." groups=["Cell Container"]]
 
+[node name="Border_Bottom" parent="Cell Container" instance=ExtResource("9_tmpff")]
+position = Vector2(360, -60)
+scale = Vector2(12, 1)
+
 [node name="Item Container" type="Node" parent="." groups=["Item Container"]]
 
 [node name="Walls" type="Node" parent="."]
 
-[node name="Joystick" type="Node2D" parent="."]
-top_level = true
-script = ExtResource("9_fmrjm")
-
-[connection signal="pressed" from="CanvasLayer/Control/Top Row/BTN_Exit" to="." method="_on_btn_exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Bot_Right/TSB_Right" to="CanvasLayer/Control" method="_on_tsb_right_pressed"]
 [connection signal="released" from="CanvasLayer/Control/Bot_Right/TSB_Right" to="CanvasLayer/Control" method="_on_tsb_right_released"]
 [connection signal="pressed" from="CanvasLayer/Control/Bot_Bot/TSB_Down" to="CanvasLayer/Control" method="_on_tsb_down_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Bot_Left/TSB_Jump" to="CanvasLayer/Control" method="_on_tsb_jump_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Bot_Left/TSB_Left" to="CanvasLayer/Control" method="_on_tsb_left_pressed"]
 [connection signal="released" from="CanvasLayer/Control/Bot_Left/TSB_Left" to="CanvasLayer/Control" method="_on_tsb_left_released"]
+[connection signal="pressed" from="CanvasLayer/Control/BTN_Exit" to="." method="_on_btn_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/LB_InputName/CenterContainer/VBoxContainer/Submit Score" to="CanvasLayer/Control/LB_InputName" method="_on_submit_score_pressed"]

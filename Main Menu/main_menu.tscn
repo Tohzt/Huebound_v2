@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfpfr4n2qwii4"]
+[gd_scene load_steps=6 format=3 uid="uid://cfpfr4n2qwii4"]
 
 [ext_resource type="Script" path="res://Main Menu/main_menu.gd" id="1_pb3t0"]
 [ext_resource type="Script" path="res://Main Menu/center_container.gd" id="2_a4c85"]
+[ext_resource type="Texture2D" uid="uid://drr2x2b1ro8wx" path="res://UI/UI_Frame_256.png" id="2_ktwyl"]
 [ext_resource type="Script" path="res://Main Menu/settings_options.gd" id="3_5may6"]
 [ext_resource type="PackedScene" uid="uid://iffpd13twfxi" path="res://Main Menu/cell_select.tscn" id="4_vui36"]
 
@@ -23,7 +24,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.187176, 0.187176, 0.187176, 1)
+color = Color(0, 0, 0, 1)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ktwyl")
+patch_margin_left = 20
+patch_margin_top = 62
+patch_margin_right = 20
+patch_margin_bottom = 62
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="Container" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -45,6 +61,10 @@ text = "START"
 layout_mode = 2
 text = "SETTINGS"
 
+[node name="BTN_Leaderboard" type="Button" parent="Container/Menu Options"]
+layout_mode = 2
+text = "LEADERBOARD"
+
 [node name="BTN_EXIT" type="Button" parent="Container/Menu Options"]
 layout_mode = 2
 text = "EXIT"
@@ -53,19 +73,18 @@ text = "EXIT"
 layout_mode = 2
 script = ExtResource("3_5may6")
 
-[node name="Label2" type="Label" parent="Container/Settings Options"]
-layout_mode = 2
-
 [node name="BTN_Back" type="Button" parent="Container/Settings Options"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Back"
 
 [node name="GridContainer" type="GridContainer" parent="Container/Settings Options"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_override_constants/h_separation = 40
 theme_override_constants/v_separation = 40
-columns = 5
+columns = 3
 
 [node name="Cell Select" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
 layout_mode = 2
@@ -110,20 +129,20 @@ layout_mode = 2
 index = 8
 color = Color(0, 1, 0, 1)
 
-[node name="Cell Select10" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
-layout_mode = 2
-index = 9
-color = Color(1, 0, 0, 1)
-
 [node name="Label" type="Label" parent="Container/Settings Options"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "
+"
 
 [node name="on-screen input" type="CheckBox" parent="Container/Settings Options"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "On-Screen Input: "
 
 [connection signal="pressed" from="Container/Menu Options/BTN_Start" to="." method="_on_btn_start_pressed"]
 [connection signal="pressed" from="Container/Menu Options/BTN_Settings" to="Container" method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="Container/Menu Options/BTN_Leaderboard" to="Container" method="_on_btn_leaderboard_pressed"]
 [connection signal="pressed" from="Container/Menu Options/BTN_EXIT" to="." method="_on_btn_exit_pressed"]
 [connection signal="pressed" from="Container/Settings Options/BTN_Back" to="Container" method="_on_btn_back_pressed"]
 [connection signal="pressed" from="Container/Settings Options/on-screen input" to="Container/Settings Options" method="_on_onscreen_input_pressed"]

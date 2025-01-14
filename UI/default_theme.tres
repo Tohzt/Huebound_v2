@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bg6tcymqwekxw"]
+
+[ext_resource type="Texture2D" uid="uid://drr2x2b1ro8wx" path="res://UI/UI_Frame_256.png" id="1_oyx44"]
+[ext_resource type="FontFile" uid="uid://cv7ta3brc7tgo" path="res://UI/OpenDyslexicAlta-Bold.otf" id="1_vpjsv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jdfio"]
+texture = ExtResource("1_oyx44")
+texture_margin_left = 20.0
+texture_margin_top = 62.0
+texture_margin_right = 20.0
+texture_margin_bottom = 62.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+modulate_color = Color(0.412152, 0.412152, 0.412152, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hw7ax"]
+texture = ExtResource("1_oyx44")
+texture_margin_left = 20.0
+texture_margin_top = 62.0
+texture_margin_right = 20.0
+texture_margin_bottom = 62.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[resource]
+Button/font_sizes/font_size = 64
+Button/fonts/font = ExtResource("1_vpjsv")
+Button/styles/hover = SubResource("StyleBoxTexture_jdfio")
+Button/styles/normal = SubResource("StyleBoxTexture_hw7ax")

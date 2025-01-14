@@ -11,30 +11,43 @@ config_version=5
 [application]
 
 config/name="HueBound"
-run/main_scene="res://3D Game/game.tscn"
+run/main_scene="res://Main Menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://global.gd"
 Settings="*res://Settings.tscn"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [display]
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
+window/size/always_on_top=true
 window/size/window_width_override=360
 window/size/window_height_override=640
 window/stretch/mode="viewport"
 window/handheld/orientation=1
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
+"res://Cell/": "yellow",
 "res://Game/": "green",
+"res://Huey/": "blue",
 "res://Main Menu/": "purple"
 }
+
+[gui]
+
+theme/custom="res://UI/default_theme.tres"
 
 [input]
 
@@ -92,3 +105,4 @@ renderer/rendering_method="mobile"
 textures/default_filters/use_nearest_mipmap_filter=true
 textures/default_filters/anisotropic_filtering_level=0
 environment/glow/upscale_mode=0
+occlusion_culling/use_occlusion_culling=true

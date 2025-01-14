@@ -1,4 +1,9 @@
 extends Control
+@onready var nine_patch_rect = $NinePatchRect
+
+
+func _ready():
+	nine_patch_rect.modulate = Global.palette_color.pick_random()
 
 
 func _on_btn_start_pressed():

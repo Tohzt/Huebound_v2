@@ -1,24 +1,33 @@
 [gd_scene load_steps=4 format=3 uid="uid://cy22vxfxtqr2j"]
 
 [ext_resource type="Script" path="res://Cell/cell.gd" id="1_172ab"]
-[ext_resource type="Texture2D" uid="uid://dbofxlgjy7wvu" path="res://Cell/HB_Palette.png" id="2_3rej3"]
+[ext_resource type="Texture2D" uid="uid://d3skdrf5ichva" path="res://Cell/src/block.png" id="2_jg6x1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vyyt"]
-size = Vector2(100, 100)
+size = Vector2(120, 120)
 
 [node name="Cell" type="Node2D" groups=["Cell"]]
-scale = Vector2(0.72, 0.72)
 script = ExtResource("1_172ab")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 3
+position = Vector2(60, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_4vyyt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("2_3rej3")
-hframes = 10
-vframes = 2
-frame = 3
+[node name="BlockSprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("2_jg6x1")
+offset = Vector2(60, 30)
+
+[node name="Label" type="Label" parent="."]
+z_index = 4096
+offset_left = 10.0
+offset_top = 60.0
+offset_right = 50.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(0, 0.713726, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "()"
+horizontal_alignment = 1
+vertical_alignment = 1

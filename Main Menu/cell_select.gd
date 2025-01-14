@@ -10,7 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	selected = Global.palette_color.has(index)
+	selected = Global.palette_color.has(color)
 	
 	if selected:
 		color_rect.color.a = 1.0
@@ -20,6 +20,6 @@ func _process(_delta):
 
 func _on_pressed():
 	if selected:
-		Global.palette_color.erase(index)
+		Global.palette_color.erase(color)
 	else:
-		Global.palette_color.append(index)
+		Global.palette_color.append(color)

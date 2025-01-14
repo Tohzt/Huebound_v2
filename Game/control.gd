@@ -4,7 +4,7 @@ extends Control
 @onready var bot_left = $Bot_Left
 
 var Hue: HueClass
-
+#From 3D
 
 func _ready():
 	Hue = get_tree().get_first_node_in_group("Hue")
@@ -36,3 +36,7 @@ func _on_tsb_right_pressed():
 
 func _on_tsb_right_released():
 	Hue.mv_right = false
+
+func _on_btn_exit_pressed():
+	Global.active_color.clear()
+	get_tree().change_scene_to_file(Global.REFS.Start)

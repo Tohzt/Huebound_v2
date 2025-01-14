@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjpm265g8ov4p"]
+
+[ext_resource type="Script" path="res://Huey/hue.gd" id="1_vbmsu"]
+[ext_resource type="Texture2D" uid="uid://blwvo8pjssnbr" path="res://Huey/src/Inner.png" id="2_fsddl"]
+[ext_resource type="Texture2D" uid="uid://bogcvf0h5o83s" path="res://Huey/src/hue_border.png" id="3_nv5u1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgl5h"]
+size = Vector2(2, 2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5guqr"]
+radius = 40.0
+
+[node name="Hue" type="CharacterBody2D" groups=["Hue"]]
+script = ExtResource("1_vbmsu")
+jump_max = null
+
+[node name="Origin" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Origin"]
+shape = SubResource("RectangleShape2D_qgl5h")
+
+[node name="fill" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+texture = ExtResource("2_fsddl")
+
+[node name="border" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("3_nv5u1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5guqr")
+
+[node name="RC_Right" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)
+
+[node name="RC_Left" type="RayCast2D" parent="."]
+target_position = Vector2(-50, 0)
+
+[connection signal="body_entered" from="Origin" to="." method="_cell_at_origin"]

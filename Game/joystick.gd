@@ -1,5 +1,5 @@
 extends Node2D
-signal move_vector
+#signal move_vector
 
 var tap = false
 var move = Vector2(0,0)

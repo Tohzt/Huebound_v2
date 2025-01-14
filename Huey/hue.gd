@@ -1,72 +1,100 @@
-class_name  HueClass
+class_name HueClass
 extends CharacterBody2D
-@onready var start_pos = position
+
+## Movement Constants
+const SPEED: float = 350.0
+const JUMP_VELOCITY: float = -500.0
+
+## Node References
+@onready var label: Label = $Label
+@onready var start_pos: Vector2 = position
 @onready var width: float = 80.0 * scale.x
 @onready var origin: Area2D = $Origin
 @onready var fill: Sprite2D = $fill
 @onready var border: Sprite2D = $border
-@onready var rc_right = $RC_Right
-@onready var rc_left = $RC_Left
+@onready var rc_right: RayCast2D = $RC_Right
+@onready var rc_left: RayCast2D = $RC_Left
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
-var direction: int
+## Character State
 var power: String = ""
-var jump = 0
-@export var jump_max = 2
-var wall_cling = false
+var jump: int = 0
+var jump_max: int = 2
+var wall_cling: bool = false
+var cur_color: Color
+var climbing: bool = true
 
-var hov_color: CellClass
-var cur_color = 0  
-
-var climbing = false
-var mv_jump = false
-var move_lr = 0.0
-var mv_down = false
+## Movement State
+var active: bool  = true
+var mv_jump: bool = false
+var move_lr: float = 0.0
+var mv_down: bool = false
 var hue_grid_pos: Vector2
 
+## Input State
 var input_move: Vector2
 var input_tap: bool
 var input_swipe: Vector2
 
-func _ready():
-	$"../Joystick".connect("move_vector", _on_joystick_move_vector)
+func _ready() -> void:
 	cur_color = Global.palette_color.pick_random()
-	fill.frame = cur_color % 10
+	fill.modulate = cur_color
 
-func set_active_color(colors: Array[int]):
+func set_active_color(colors: Array[Color]) -> void:
 	Global.active_color.clear()
 	Global.active_color = colors
 
-func _physics_process(delta):
-	var hue_x_pos = floor(global_position.x / Settings.cell_size)
-	var hue_y_pos = abs(floor(global_position.y / Settings.cell_size)+1)
+func _process(_delta: float) -> void:
+	border.z_index = abs(position.y) / 10 + 15
+	fill.z_index = abs(position.y) / 10 + 15
+	label.text = "[" + str(border.z_index) + "]"
+
+func _update_grid_pos():
+	var hue_x_pos = floor((origin.global_position.x - Settings.cell_offset) / Settings.cell_size)
+	var hue_y_pos = abs(floor((origin.global_position.y + Settings.cell_offset) / Settings.cell_size))
 	hue_grid_pos = Vector2(hue_x_pos, hue_y_pos)
-	
+
+func _gravity(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	else:
+		jump = 0
+
+func _limit_borders():
+	# Prevent movement outside of game-space
 	if position.x <= width/2.0:
 		position.x = width/2.0
 	if position.x >= Global.view_width - width/2.0:
 		position.x = Global.view_width - width/2.0
 	if position.y >= -width/2.0:
-		climbing = true
 		velocity.y = 0
 		position.y = -width/2.0
 		jump = 0
-	
+
+func _swap_colors():
 	if mv_down:
 		mv_down = false
-		var _col = cur_color
-		cur_color = hov_color.color_index
-		hov_color.color_index = _col
-		hov_color.sprite.frame = _col + 10
-		hov_color.cell_solid = false
-		fill.frame = cur_color % 10
-	
+		var _col: Color = cur_color
+		var cells = get_tree().get_nodes_in_group("Cell")
+		for cell: CellClass in cells:
+			if cell.cell_grid_pos == hue_grid_pos:
+				cur_color = cell.color
+				cell.color = _col
+				cell.color_shaded = _col
+				cell.block_sprite.modulate = _col.darkened(0.25)
+				fill.modulate = cur_color
+				break
+
+func _climbing():
 	if climbing: 
 		Global.height = int(abs(global_position.y) / Settings.cell_size)
-		Global.height_max = max(Global.height, Global.height_max)
+		if Global.height > Global.height_max:
+			Global.height_max = Global.height
+			Global.record_set = true
+	elif int(abs(global_position.y) / Settings.cell_size) <= 1:
+		climbing = true
 
+func _friction(delta):
 	if input_move.x != 0:
 		move_lr = lerp(move_lr, input_move.x, delta*10)
 	elif jump == 0:
@@ -76,19 +104,8 @@ func _physics_process(delta):
 	
 	if input_swipe.y < -0.5:
 		mv_jump = true
-	
-	if input_tap:
-		input_tap = false
-		if abs(move_lr) < 0.5:
-			mv_down = true
 
-	if input_swipe.length() > 0:
-		input_swipe = Vector2.ZERO
-		var swipe_dir = rad_to_deg(input_swipe.angle())
-		if swipe_dir < -30 and swipe_dir > -150:
-			mv_jump = true
-			
-	
+func _power_ups():
 	jump_max = 2
 	wall_cling = false
 	match power:
@@ -97,23 +114,20 @@ func _physics_process(delta):
 		
 		"wall_cling":
 			wall_cling = true
-	
+
+func _jump_and_toggle_cells():
 	if mv_jump and jump < jump_max:
 		mv_jump = false
 		if jump == 0:
-			update_cells()
 			set_active_color([cur_color])
+			update_cells()
 		jump += 1
 		velocity.y = JUMP_VELOCITY
-	
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	else:
-		jump = 0
-	
+
+func _listen_for_input(delta):
 	if Input.is_action_just_pressed("ui_accept"):
-		mv_jump = true
+		if jump < jump_max:
+			mv_jump = true
 	
 	if Input.is_action_just_pressed("ui_down"):
 		mv_down = true
@@ -121,22 +135,53 @@ func _physics_process(delta):
 	var input_dir = Input.get_axis("ui_left", "ui_right")
 	if input_dir == 1: move_lr = lerp(move_lr, 1.0, delta*60)
 	elif input_dir == -1: move_lr = lerp(move_lr, -1.0, delta*60)
-	
+
+func _respond_to_input():
 	if move_lr:
 		velocity.x = move_lr * SPEED
-		var col = rc_right.get_collider() or rc_left.get_collider()
-		
-		if wall_cling and col:
-			jump = max(1, jump_max-1)
-			velocity.y = min(velocity.y, 0)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	var col = rc_right.get_collider() or rc_left.get_collider()
+	if floor(abs(move_lr)) == 0: col = false
+	if wall_cling and col:
+		jump = max(1, jump_max-1)
+		velocity.y = min(velocity.y, 0)
+	
 	move_and_slide()
+
+func _physics_process(delta):
+	_update_grid_pos()
+	_gravity(delta)
+	_limit_borders()
+	_swap_colors()
+	_climbing()
+	_friction(delta)
+	_power_ups()
+	_jump_and_toggle_cells()
+	if active: _listen_for_input(delta)
+	_respond_to_input()
+	
+	#if input_tap:
+		#input_tap = false
+		#if abs(move_lr) < 0.5:
+			#mv_down = true
+#
+	#if input_swipe.length() > 0:
+		#input_swipe = Vector2.ZERO
+		#var swipe_dir = rad_to_deg(input_swipe.angle())
+		#if swipe_dir < -30 and swipe_dir > -150:
+			#mv_jump = true
 
 func update_cells():
 	var cells = get_tree().get_nodes_in_group("Cell")
 	for cell: CellClass in cells:
-		cell.update_solid = true
+		# TODO: Call function like item does
+		cell.update_solid()
+	
+	var items = get_tree().get_nodes_in_group("Item")
+	for item: ItemClass in items:
+		item.check_visible()
 
 # This function will be called whenever the joystick emits its signal
 func _on_joystick_move_vector(move: Vector2, tap: bool, swipe: Vector2):
@@ -144,11 +189,12 @@ func _on_joystick_move_vector(move: Vector2, tap: bool, swipe: Vector2):
 	input_tap = tap
 	input_swipe = swipe
 
-func _cell_at_origin(body):
-	if body:
-		hov_color = body.get_parent()
-
 func death_to_heuy():
 	print_debug("DEAD")
+	climbing = false
 	Global.active_color.clear()
+	update_cells()
 	position = start_pos
+	if Global.record_set:
+		active = false
+		get_parent().lb_input_name.show()
