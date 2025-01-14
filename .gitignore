@@ -2,3 +2,7 @@
 .godot/
 /android/
 _Exports
+
+# API Keys and sensitive data
+apiKey.env
+*.env
