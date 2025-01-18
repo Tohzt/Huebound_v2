@@ -22,6 +22,7 @@ var jump_max: int = 2
 var wall_cling: bool = false
 var cur_color: Color
 var climbing: bool = true
+var alive = true
 
 ## Movement State
 var active: bool  = true
@@ -36,7 +37,7 @@ var input_tap: bool
 var input_swipe: Vector2
 
 func _ready() -> void:
-	cur_color = Global.palette_color.pick_random()
+	cur_color = Global.active_color[0]
 	fill.modulate = cur_color
 
 func set_active_color(colors: Array[Color]) -> void:
@@ -90,7 +91,7 @@ func _climbing():
 		Global.height = int(abs(global_position.y) / Settings.cell_size)
 		if Global.height > Global.height_max:
 			Global.height_max = Global.height
-			Global.record_set = true
+			Global.new_record = true
 	elif int(abs(global_position.y) / Settings.cell_size) <= 1:
 		climbing = true
 
@@ -161,6 +162,9 @@ func _physics_process(delta):
 	_jump_and_toggle_cells()
 	if active: _listen_for_input(delta)
 	_respond_to_input()
+	if !alive: 
+		get_tree().change_scene_to_file(Global.REFS.Win_Lose)
+
 	
 	#if input_tap:
 		#input_tap = false
@@ -190,11 +194,10 @@ func _on_joystick_move_vector(move: Vector2, tap: bool, swipe: Vector2):
 	input_swipe = swipe
 
 func death_to_heuy():
+	alive = false
 	print_debug("DEAD")
-	climbing = false
-	Global.active_color.clear()
-	update_cells()
 	position = start_pos
-	if Global.record_set:
-		active = false
-		get_parent().lb_input_name.show()
+	if Global.new_record:
+		Global.new_record = true
+		#active = false
+		#get_parent().lb_input_name.show()

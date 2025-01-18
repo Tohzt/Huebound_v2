@@ -1,13 +1,14 @@
 extends Node2D
 
 @onready var Hue = $Hue
-@onready var lb_input_name = $CanvasLayer/Control/LB_InputName
+#@onready var lb_input_name = $CanvasLayer/Control/LB_InputName
 
 var num_rows = 20
 var num_cols = 5
 var chunk_shift = 1
 
 func _ready():
+	Global.new_record = false
 	Global.add_chunk = true
 	_build_grid()
 
@@ -49,10 +50,8 @@ func _process(_delta):
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
-		Global.active_color.clear()
 		get_tree().change_scene_to_file(Global.REFS.Start)
 
 
 func _on_btn_exit_pressed():
-	Global.active_color.clear()
 	get_tree().change_scene_to_file(Global.REFS.Start)

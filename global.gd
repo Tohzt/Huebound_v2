@@ -4,6 +4,7 @@ extends Node
 const REFS ={
 	"Start": "res://Main Menu/main_menu.tscn",
 	"Game": "res://Game/Game.tscn",
+	"Win_Lose": "res://Win_Lose/Win_Lose.tscn",
 	"Leaderboard": "res://addons/silent_wolf/Scores/Leaderboard.tscn",
 	"Huey": preload("res://Huey/hue.tscn"),
 	"Cell": preload("res://Cell/cell.tscn"),
@@ -29,9 +30,11 @@ var colors_3d = [Color(1, 0, 0), Color(0, 1, 0), Color(0, 0, 1), Color(1, 1, 0),
 var player_name: String = "Huey"
 var player_list = []
 var score = 0
-var record_set = false
+var new_record = false
 
 func _ready():
+	active_color = [palette_color.pick_random()]
+	
 	var file = FileAccess.open("res://apiKey.env", FileAccess.READ)
 	var apiKey = file.get_as_text()
 	

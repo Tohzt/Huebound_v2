@@ -33,6 +33,7 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
 [node name="OldBoard" type="MarginContainer" parent="."]
+layout_mode = 0
 
 [node name="HighScores" type="TextureRect" parent="OldBoard"]
 layout_mode = 2

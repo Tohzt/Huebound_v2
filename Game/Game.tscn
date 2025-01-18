@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://y3q547fkfi4g"]
+[gd_scene load_steps=11 format=3 uid="uid://y3q547fkfi4g"]
 
 [ext_resource type="Script" path="res://Game/game.gd" id="1_30xni"]
 [ext_resource type="Script" path="res://Game/control.gd" id="2_fo51i"]
@@ -7,10 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bllbru41x5c11" path="res://Game/up.png" id="3_34jfi"]
 [ext_resource type="Script" path="res://Game/v_box_container.gd" id="4_do4el"]
 [ext_resource type="Texture2D" uid="uid://dfn6ul1c1syjf" path="res://Game/down.png" id="4_vk78k"]
-[ext_resource type="Texture2D" uid="uid://dp68qev5501qm" path="res://UI/UI_Frame.png" id="5_4mfrm"]
 [ext_resource type="Texture2D" uid="uid://db3x46nmg61ym" path="res://Game/left.png" id="5_526th"]
 [ext_resource type="Texture2D" uid="uid://bja18oj4hvj5j" path="res://Cell/src/edge.png" id="5_xm3j0"]
-[ext_resource type="Script" path="res://Game/lb_input_name.gd" id="6_673ry"]
 [ext_resource type="PackedScene" uid="uid://c1lhapr6y2nxb" path="res://Game/Border/Border.tscn" id="9_tmpff"]
 
 [node name="Game" type="Node2D"]
@@ -156,60 +154,6 @@ size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 32
 text = "   [x]   "
 
-[node name="LB_InputName" type="NinePatchRect" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -200.0
-offset_right = 300.0
-offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_4mfrm")
-patch_margin_left = 48
-patch_margin_top = 48
-patch_margin_right = 48
-patch_margin_bottom = 48
-script = ExtResource("6_673ry")
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/LB_InputName"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/LB_InputName/CenterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="Label" type="Label" parent="CanvasLayer/Control/LB_InputName/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "New High Score!!"
-
-[node name="InputName" type="LineEdit" parent="CanvasLayer/Control/LB_InputName/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-placeholder_text = "Enter your Name"
-alignment = 1
-max_length = 30
-drag_and_drop_selection_enabled = false
-caret_blink = true
-
-[node name="Submit Score" type="Button" parent="CanvasLayer/Control/LB_InputName/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Submit
-"
-
 [node name="Hue" parent="." instance=ExtResource("3_5kmum")]
 position = Vector2(170, -120)
 
@@ -230,4 +174,3 @@ scale = Vector2(12, 1)
 [connection signal="pressed" from="CanvasLayer/Control/Bot_Left/TSB_Left" to="CanvasLayer/Control" method="_on_tsb_left_pressed"]
 [connection signal="released" from="CanvasLayer/Control/Bot_Left/TSB_Left" to="CanvasLayer/Control" method="_on_tsb_left_released"]
 [connection signal="pressed" from="CanvasLayer/Control/BTN_Exit" to="." method="_on_btn_exit_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/LB_InputName/CenterContainer/VBoxContainer/Submit Score" to="CanvasLayer/Control/LB_InputName" method="_on_submit_score_pressed"]

@@ -21,6 +21,7 @@ texture = ExtResource("2_jg6x1")
 offset = Vector2(60, 30)
 
 [node name="Label" type="Label" parent="."]
+visible = false
 z_index = 4096
 offset_left = 10.0
 offset_top = 60.0
