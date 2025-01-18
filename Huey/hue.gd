@@ -23,6 +23,7 @@ var wall_cling: bool = false
 var cur_color: Color
 var climbing: bool = true
 var alive = true
+var color_swapped: bool = true
 
 ## Movement State
 var active: bool  = true
@@ -84,6 +85,7 @@ func _swap_colors():
 				cell.color_shaded = _col
 				cell.block_sprite.modulate = _col.darkened(0.25)
 				fill.modulate = cur_color
+				color_swapped = true
 				break
 
 func _climbing():
@@ -119,7 +121,8 @@ func _power_ups():
 func _jump_and_toggle_cells():
 	if mv_jump and jump < jump_max:
 		mv_jump = false
-		if jump == 0:
+		if color_swapped:
+			color_swapped = false
 			set_active_color([cur_color])
 			update_cells()
 		jump += 1
@@ -151,6 +154,12 @@ func _respond_to_input():
 	
 	move_and_slide()
 
+func _death_under_camera():
+	var camera = get_parent().get_node("Camera2D")
+	var camera_bottom = camera.global_position.y + get_viewport_rect().size.y/2
+	if global_position.y > camera_bottom + 50:  # Add small buffer of 100 pixels
+		death_to_heuy()
+	
 func _physics_process(delta):
 	_update_grid_pos()
 	_gravity(delta)
@@ -162,6 +171,7 @@ func _physics_process(delta):
 	_jump_and_toggle_cells()
 	if active: _listen_for_input(delta)
 	_respond_to_input()
+	_death_under_camera()
 	if !alive: 
 		get_tree().change_scene_to_file(Global.REFS.Win_Lose)
 

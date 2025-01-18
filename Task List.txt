@@ -1,0 +1,18 @@
+HueBound ToDo
+
++ Scrolling Camera
++ Camera only Up
++ Death under camera
+- Color Selection
+- Death Anim
+- Animated Huey
++ Change color in-air
+- Display current skill
+- Skill toggle/destroy over time
+
+
+
+New Skills
+- Teleport to next free space above selected color
+- Double-active colors (using Hueys body and skin) 
+- Random body color
