@@ -3,12 +3,17 @@ HueBound ToDo
 + Scrolling Camera
 + Camera only Up
 + Death under camera
++ Change color in-air
+
+- Display current skill
+- Skill toggle/destroy over time
 - Color Selection
 - Death Anim
 - Animated Huey
-+ Change color in-air
-- Display current skill
-- Skill toggle/destroy over time
+
+
+
+- Fix Mobile Inputs
 
 
 
