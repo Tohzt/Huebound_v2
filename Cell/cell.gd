@@ -29,13 +29,17 @@ func _ready():
 
 
 func _process(delta):
-	block_sprite.z_index = -int(position.y)
+	block_sprite.z_index = int(cell_grid_pos.y+1)
 	if !cell_solid:
-		block_sprite.z_index = -int(position.y) - 300
+		block_sprite.z_index = int(cell_grid_pos.y-1)
+	#block_sprite.z_index = -int(position.y/100)
+	#if !cell_solid:
+		#block_sprite.z_index = -int(position.y/100) - 300/100
 
 	#block_sprite.z_index = abs(position.y) / 10
 	
 	#label.text = "(" + str(cell_grid_pos.x)+","+str(cell_grid_pos.y) +")"
+	label.text = "(" + str(block_sprite.z_index) +")"
 	position.y = lerp(position.y, pos, delta * slide_speed)
 	
 	cell.set_collision_layer_value(1, cell_solid)

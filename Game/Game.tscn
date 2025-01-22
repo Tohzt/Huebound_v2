@@ -33,6 +33,7 @@ limit_left = 0
 limit_right = 720
 limit_bottom = 60
 script = ExtResource("2_ke4h0")
+max_scroll_speed = 0.0
 
 [node name="Border_Right" parent="Camera2D" instance=ExtResource("9_tmpff")]
 position = Vector2(360, 0)

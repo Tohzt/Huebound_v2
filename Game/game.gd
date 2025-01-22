@@ -2,8 +2,9 @@ extends Node2D
 
 @onready var Hue = $Hue
 
-const Z_INDEX_RESET_THRESHOLD = 10000  # Adjust as needed
-var base_z_index = 0
+var num_rows = 40
+var num_cols = 5
+var chunk_shift = 1
 
 func _ready():
 	Global.new_record = false
@@ -13,8 +14,8 @@ func _ready():
 func _build_grid():
 	# TODO Spawn item into block. Easier to hide when block is active
 	if !Global.add_chunk: return
-	var yy = 40
-	var xx = 5
+	var yy = num_rows
+	var xx = num_cols
 	#var cur_cel = 0
 	var _freq = Settings.item_frequency
 	for y in yy:
@@ -36,19 +37,18 @@ func _build_grid():
 
 func _process(_delta):
 	# When player gets close to top, recycle bottom rows
-	if Global.height > 40 - 6:
+	if Global.height > num_rows - 6:  # Triggers when player is 6 rows from top
 		var cells = get_tree().get_nodes_in_group("Cell")
-		var num_rows = 40
-		var chunk_shift = 1
-		
-		# Regular recycling logic
+		num_rows += 10  # Increment by 10 rows instead of 1
 		for cell: CellClass in cells:
+			# Check if cell is in any of the next 10 rows to be recycled
 			if cell.cell_grid_pos.y >= chunk_shift and cell.cell_grid_pos.y < chunk_shift + 10:
+				# Calculate new row position based on how many rows up it should go
 				var row_offset = cell.cell_grid_pos.y - chunk_shift
 				cell.position.y = -(num_rows + 1 - (9 - row_offset)) * Settings.cell_size
 				cell._ready()
 				cell.update_solid()
-		chunk_shift += 10
+		chunk_shift += 10  # Increment chunk_shift by 10 instead of 1
 
 
 func _unhandled_input(_event):
