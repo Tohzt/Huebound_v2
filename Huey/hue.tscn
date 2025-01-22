@@ -16,28 +16,27 @@ collision_mask = 3
 script = ExtResource("1_vbmsu")
 
 [node name="Origin" type="Area2D" parent="."]
+position = Vector2(0, -40)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Origin"]
 shape = SubResource("RectangleShape2D_qgl5h")
 
-[node name="fill" type="Sprite2D" parent="."]
-top_level = true
-z_index = 2
-z_as_relative = false
-y_sort_enabled = true
-texture_filter = 1
-texture = ExtResource("2_fsddl")
-script = ExtResource("3_kxjvi")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40)
+shape = SubResource("CircleShape2D_5guqr")
 
 [node name="border" type="Sprite2D" parent="."]
-y_sort_enabled = true
-texture_filter = 1
+top_level = true
+position = Vector2(0, -40)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("3_nv5u1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_5guqr")
+[node name="fill" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(0, -40)
+texture = ExtResource("2_fsddl")
+script = ExtResource("3_kxjvi")
 
 [node name="RC_Right" type="RayCast2D" parent="."]
 target_position = Vector2(50, 0)

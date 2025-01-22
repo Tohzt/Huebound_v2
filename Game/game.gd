@@ -1,11 +1,9 @@
 extends Node2D
 
 @onready var Hue = $Hue
-#@onready var lb_input_name = $CanvasLayer/Control/LB_InputName
 
-var num_rows = 20
-var num_cols = 5
-var chunk_shift = 1
+const Z_INDEX_RESET_THRESHOLD = 10000  # Adjust as needed
+var base_z_index = 0
 
 func _ready():
 	Global.new_record = false
@@ -15,8 +13,8 @@ func _ready():
 func _build_grid():
 	# TODO Spawn item into block. Easier to hide when block is active
 	if !Global.add_chunk: return
-	var yy = num_rows
-	var xx = num_cols
+	var yy = 40
+	var xx = 5
 	#var cur_cel = 0
 	var _freq = Settings.item_frequency
 	for y in yy:
@@ -37,15 +35,20 @@ func _build_grid():
 	Global.add_chunk = false
 
 func _process(_delta):
-	if Global.height > num_rows - 6:
+	# When player gets close to top, recycle bottom rows
+	if Global.height > 40 - 6:
 		var cells = get_tree().get_nodes_in_group("Cell")
-		num_rows+=1
+		var num_rows = 40
+		var chunk_shift = 1
+		
+		# Regular recycling logic
 		for cell: CellClass in cells:
-			if cell.cell_grid_pos.y == chunk_shift:
-				cell.position.y = -(num_rows+1)*Settings.cell_size
+			if cell.cell_grid_pos.y >= chunk_shift and cell.cell_grid_pos.y < chunk_shift + 10:
+				var row_offset = cell.cell_grid_pos.y - chunk_shift
+				cell.position.y = -(num_rows + 1 - (9 - row_offset)) * Settings.cell_size
 				cell._ready()
 				cell.update_solid()
-		chunk_shift+=1
+		chunk_shift += 10
 
 
 func _unhandled_input(_event):

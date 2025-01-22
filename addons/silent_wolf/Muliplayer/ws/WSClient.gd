@@ -53,7 +53,7 @@ func _on_data():
 	# to receive data from server, and not get_packet directly when not
 	# using the MultiplayerAPI.
 	#SWLogger.debug("Got data from WS server: " + str(_client.get_peer(1).get_packet().get_string_from_utf8()))
-	#print("Got data from WS server: ", _client.get_peer(1).get_packet().get_string_from_utf8())
+	#print_debug("Got data from WS server: ", _client.get_peer(1).get_packet().get_string_from_utf8())
 	pass
 
 func _process(delta):

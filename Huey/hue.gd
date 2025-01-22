@@ -14,6 +14,7 @@ const JUMP_VELOCITY: float = -500.0
 @onready var border: Sprite2D = $border
 @onready var rc_right: RayCast2D = $RC_Right
 @onready var rc_left: RayCast2D = $RC_Left
+@onready var InputManager = $"../InputManager"  # Adjust path as needed
 
 ## Character State
 var power: String = ""
@@ -37,18 +38,56 @@ var input_move: Vector2
 var input_tap: bool
 var input_swipe: Vector2
 
+# Touch visualization
+var touch_positions: Array[Vector2] = []
+const TOUCH_CIRCLE_RADIUS = 20
+const TOUCH_CIRCLE_COLOR = Color(1, 1, 1, 0.5)  # Semi-transparent white
+
+var jump_direction = Vector2.ZERO
+const JUMP_HORIZONTAL_BOOST = 0.75  # Reduced from 1.5
+
 func _ready() -> void:
 	cur_color = Global.active_color[0]
 	fill.modulate = cur_color
+	InputManager.interaction_moved.connect(_on_interaction_moved)
+	InputManager.interaction_ended.connect(_on_interaction_ended)
+	InputManager.interaction_swiped.connect(_on_interaction_swiped)
+
+func _on_interaction_moved(movement: Vector2):
+	# Clear jump direction when player starts moving again
+	if InputManager.is_touching:
+		jump_direction = Vector2.ZERO
+	
+	# Handle horizontal movement
+	if abs(movement.x) <= 1.0:
+		move_lr = movement.x
+
+func _on_interaction_ended(_position, was_tap: bool = false):
+	move_lr = 0.0
+	if was_tap:
+		mv_down = true  # Trigger color swap on tap
+
+func _on_interaction_swiped(direction: Vector2):
+	if direction.y < 0 and jump < jump_max:
+		# Reduce horizontal influence
+		var enhanced_direction = direction
+		enhanced_direction.x *= 0.75  # Reduced from 1.5
+		jump_direction = enhanced_direction
+		mv_jump = true
+
+func _draw():
+	# Draw circles at touch positions
+	for pos in touch_positions:
+		draw_circle(pos, TOUCH_CIRCLE_RADIUS, TOUCH_CIRCLE_COLOR)
 
 func set_active_color(colors: Array[Color]) -> void:
 	Global.active_color.clear()
 	Global.active_color = colors
 
 func _process(_delta: float) -> void:
-	border.z_index = abs(position.y) / 10 + 15
-	fill.z_index = abs(position.y) / 10 + 15
-	label.text = "[" + str(border.z_index) + "]"
+	$fill.z_index = -int(position.y) + 100
+	$border.z_index = -int(position.y) + 100
+	#label.text = "[" + str(border.z_index) + "]"
 
 func _update_grid_pos():
 	var hue_x_pos = floor((origin.global_position.x - Settings.cell_offset) / Settings.cell_size)
@@ -98,15 +137,14 @@ func _climbing():
 		climbing = true
 
 func _friction(delta):
-	if input_move.x != 0:
-		move_lr = lerp(move_lr, input_move.x, delta*10)
-	elif jump == 0:
-		move_lr = 0.0
-	else:
-		move_lr = lerp(move_lr, 0.0, delta*10)
-	
-	if input_swipe.y < -0.5:
-		mv_jump = true
+	# Only apply friction if we're not getting touch input
+	if !InputManager.is_touching:
+		if input_move.x != 0:
+			move_lr = lerp(move_lr, input_move.x, delta*10)
+		elif jump == 0:
+			move_lr = 0.0
+		else:
+			move_lr = lerp(move_lr, 0.0, delta*10)
 
 func _power_ups():
 	jump_max = 2
@@ -126,9 +164,16 @@ func _jump_and_toggle_cells():
 			set_active_color([cur_color])
 			update_cells()
 		jump += 1
+		
+		# Apply both vertical and horizontal velocity
 		velocity.y = JUMP_VELOCITY
+		velocity.x = SPEED * jump_direction.x * JUMP_HORIZONTAL_BOOST
 
 func _listen_for_input(delta):
+	_mobile_input(delta)
+	_keyboard_input(delta)
+
+func _keyboard_input(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		if jump < jump_max:
 			mv_jump = true
@@ -137,12 +182,35 @@ func _listen_for_input(delta):
 		mv_down = true
 		
 	var input_dir = Input.get_axis("ui_left", "ui_right")
-	if input_dir == 1: move_lr = lerp(move_lr, 1.0, delta*60)
-	elif input_dir == -1: move_lr = lerp(move_lr, -1.0, delta*60)
+	if input_dir != 0:  # Only update move_lr if there's keyboard input
+		move_lr = lerp(move_lr, input_dir, delta*60)
+
+func _mobile_input(delta):
+	# Only update move_lr if there's mobile input and no keyboard input
+	if input_move.x != 0 and Input.get_axis("ui_left", "ui_right") == 0:
+		move_lr = lerp(move_lr, input_move.x, delta*10)
+	
+	if input_tap:
+		input_tap = false
+		if abs(move_lr) < 0.5:
+			mv_down = true
+	
+	if input_swipe.length() > 0:
+		var swipe_dir = rad_to_deg(input_swipe.angle())
+		if swipe_dir < -30 and swipe_dir > -150:
+			mv_jump = true
+		input_swipe = Vector2.ZERO
 
 func _respond_to_input():
-	if move_lr:
+	# Apply velocity from either touch or keyboard input
+	if move_lr != 0:
 		velocity.x = move_lr * SPEED
+	elif jump_direction != Vector2.ZERO:
+		# Only maintain jump direction if we're moving upward or at peak of jump
+		if velocity.y <= 0:
+			velocity.x = jump_direction.x * SPEED * JUMP_HORIZONTAL_BOOST
+		else:
+			jump_direction = Vector2.ZERO  # Clear direction when falling
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
@@ -175,18 +243,6 @@ func _physics_process(delta):
 	if !alive: 
 		get_tree().change_scene_to_file(Global.REFS.Win_Lose)
 
-	
-	#if input_tap:
-		#input_tap = false
-		#if abs(move_lr) < 0.5:
-			#mv_down = true
-#
-	#if input_swipe.length() > 0:
-		#input_swipe = Vector2.ZERO
-		#var swipe_dir = rad_to_deg(input_swipe.angle())
-		#if swipe_dir < -30 and swipe_dir > -150:
-			#mv_jump = true
-
 func update_cells():
 	var cells = get_tree().get_nodes_in_group("Cell")
 	for cell: CellClass in cells:
@@ -197,7 +253,6 @@ func update_cells():
 	for item: ItemClass in items:
 		item.check_visible()
 
-# This function will be called whenever the joystick emits its signal
 func _on_joystick_move_vector(move: Vector2, tap: bool, swipe: Vector2):
 	input_move = move
 	input_tap = tap
@@ -209,5 +264,3 @@ func death_to_heuy():
 	position = start_pos
 	if Global.new_record:
 		Global.new_record = true
-		#active = false
-		#get_parent().lb_input_name.show()

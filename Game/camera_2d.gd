@@ -3,7 +3,7 @@ extends Camera2D
 @onready var Target = get_parent().get_node("Hue")
 @onready var start_pos = position
 
-var max_scroll_speed = 50.0  # Maximum scroll speed in pixels per second
+@export var max_scroll_speed: float = 50.0  # Maximum scroll speed in pixels per second
 var current_scroll_speed = 0  # Current scroll speed
 var acceleration_time = 3.0  # Time in seconds to reach max speed
 var time_elapsed = 0.0  # Track elapsed time since start

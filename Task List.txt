@@ -4,16 +4,20 @@ HueBound ToDo
 + Camera only Up
 + Death under camera
 + Change color in-air
++ Fix Mobile Inputs
 
 - Display current skill
 - Skill toggle/destroy over time
 - Color Selection
 - Death Anim
 - Animated Huey
+- Splash Screen / Icon
+- Chunk-swap more than 1 row at a time. 
 
+X - Lose Joystick sprites after 80-ish rows
+x - hitting z-max
+  - possible solution is to use modulo to get the correct z-index
 
-
-- Fix Mobile Inputs
 
 
 

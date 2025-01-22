@@ -24,8 +24,6 @@ var height_max = 20
 
 var add_chunk = false
 
-var colors_3d = [Color(1, 0, 0), Color(0, 1, 0), Color(0, 0, 1), Color(1, 1, 0), Color(0, 1, 1)]
-
 ## Leaderboard
 var player_name: String = "Huey"
 var player_list = []

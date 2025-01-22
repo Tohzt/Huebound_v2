@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db3x46nmg61ym"
-path="res://.godot/imported/left.png-c3f828acd5549eeeb6b0ec7a38e2ca9b.ctex"
+uid="uid://ch73x3vay017l"
+path="res://.godot/imported/Touch_Origin.png-60eb6315ee0b385aecf5211390a2fbb6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/left.png"
-dest_files=["res://.godot/imported/left.png-c3f828acd5549eeeb6b0ec7a38e2ca9b.ctex"]
+source_file="res://Game/Input/Touch_Origin.png"
+dest_files=["res://.godot/imported/Touch_Origin.png-60eb6315ee0b385aecf5211390a2fbb6.ctex"]
 
 [params]
 

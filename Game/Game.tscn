@@ -1,18 +1,31 @@
 [gd_scene load_steps=11 format=3 uid="uid://y3q547fkfi4g"]
 
 [ext_resource type="Script" path="res://Game/game.gd" id="1_30xni"]
+[ext_resource type="Script" path="res://Game/Input/input_manager.gd" id="2_cylo2"]
 [ext_resource type="Script" path="res://Game/control.gd" id="2_fo51i"]
 [ext_resource type="Script" path="res://Game/camera_2d.gd" id="2_ke4h0"]
 [ext_resource type="PackedScene" uid="uid://bjpm265g8ov4p" path="res://Huey/hue.tscn" id="3_5kmum"]
-[ext_resource type="Texture2D" uid="uid://bllbru41x5c11" path="res://Game/up.png" id="3_34jfi"]
+[ext_resource type="Texture2D" uid="uid://ch73x3vay017l" path="res://Game/Input/Touch_Origin.png" id="3_snh3f"]
 [ext_resource type="Script" path="res://Game/v_box_container.gd" id="4_do4el"]
-[ext_resource type="Texture2D" uid="uid://dfn6ul1c1syjf" path="res://Game/down.png" id="4_vk78k"]
-[ext_resource type="Texture2D" uid="uid://db3x46nmg61ym" path="res://Game/left.png" id="5_526th"]
+[ext_resource type="Texture2D" uid="uid://c5q5xb41m6hx5" path="res://Game/Input/Touch_Pos.png" id="4_fdw4r"]
 [ext_resource type="Texture2D" uid="uid://bja18oj4hvj5j" path="res://Cell/src/edge.png" id="5_xm3j0"]
 [ext_resource type="PackedScene" uid="uid://c1lhapr6y2nxb" path="res://Game/Border/Border.tscn" id="9_tmpff"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_30xni")
+
+[node name="InputManager" type="Node" parent="."]
+script = ExtResource("2_cylo2")
+
+[node name="Touch_Origin" type="Sprite2D" parent="."]
+z_index = 999
+z_as_relative = false
+texture = ExtResource("3_snh3f")
+
+[node name="Touch_Pos" type="Sprite2D" parent="."]
+z_index = 999
+z_as_relative = false
+texture = ExtResource("4_fdw4r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(360, -640)
@@ -56,69 +69,6 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_xm3j0")
 
-[node name="Bot_Right" type="PanelContainer" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.60999
-offset_top = -49.12
-offset_right = 8.60999
-offset_bottom = -49.12
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="TSB_Right" type="TouchScreenButton" parent="CanvasLayer/Control/Bot_Right"]
-position = Vector2(-200, -200)
-scale = Vector2(2, 2)
-texture_normal = ExtResource("5_526th")
-texture_pressed = ExtResource("5_526th")
-
-[node name="Bot_Bot" type="PanelContainer" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 4.98999
-offset_top = -49.12
-offset_right = 4.98999
-offset_bottom = -49.12
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="TSB_Down" type="TouchScreenButton" parent="CanvasLayer/Control/Bot_Bot"]
-position = Vector2(-153.92, -101.955)
-scale = Vector2(2, 2)
-texture_normal = ExtResource("4_vk78k")
-texture_pressed = ExtResource("4_vk78k")
-
-[node name="Bot_Left" type="PanelContainer" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 5.165
-offset_top = -49.12
-offset_right = 5.165
-offset_bottom = -49.12
-grow_vertical = 0
-
-[node name="TSB_Jump" type="TouchScreenButton" parent="CanvasLayer/Control/Bot_Left"]
-position = Vector2(6, -290)
-scale = Vector2(2, 2)
-texture_normal = ExtResource("3_34jfi")
-texture_pressed = ExtResource("3_34jfi")
-
-[node name="TSB_Left" type="TouchScreenButton" parent="CanvasLayer/Control/Bot_Left"]
-position = Vector2(10, -200)
-scale = Vector2(2, 2)
-texture_normal = ExtResource("5_526th")
-texture_pressed = ExtResource("5_526th")
-
 [node name="Bottom Row" type="HBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 2
 offset_left = 20.0
@@ -155,7 +105,7 @@ theme_override_font_sizes/font_size = 32
 text = "   [x]   "
 
 [node name="Hue" parent="." instance=ExtResource("3_5kmum")]
-position = Vector2(170, -120)
+position = Vector2(364, -530)
 
 [node name="Cell Container" type="Node" parent="." groups=["Cell Container"]]
 
@@ -167,10 +117,4 @@ scale = Vector2(12, 1)
 
 [node name="Walls" type="Node" parent="."]
 
-[connection signal="pressed" from="CanvasLayer/Control/Bot_Right/TSB_Right" to="CanvasLayer/Control" method="_on_tsb_right_pressed"]
-[connection signal="released" from="CanvasLayer/Control/Bot_Right/TSB_Right" to="CanvasLayer/Control" method="_on_tsb_right_released"]
-[connection signal="pressed" from="CanvasLayer/Control/Bot_Bot/TSB_Down" to="CanvasLayer/Control" method="_on_tsb_down_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Bot_Left/TSB_Jump" to="CanvasLayer/Control" method="_on_tsb_jump_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Bot_Left/TSB_Left" to="CanvasLayer/Control" method="_on_tsb_left_pressed"]
-[connection signal="released" from="CanvasLayer/Control/Bot_Left/TSB_Left" to="CanvasLayer/Control" method="_on_tsb_left_released"]
 [connection signal="pressed" from="CanvasLayer/Control/BTN_Exit" to="." method="_on_btn_exit_pressed"]
