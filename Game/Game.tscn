@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://y3q547fkfi4g"]
+[gd_scene load_steps=12 format=3 uid="uid://y3q547fkfi4g"]
 
 [ext_resource type="Script" path="res://Game/game.gd" id="1_30xni"]
 [ext_resource type="Script" path="res://Game/Input/input_manager.gd" id="2_cylo2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c5q5xb41m6hx5" path="res://Game/Input/Touch_Pos.png" id="4_fdw4r"]
 [ext_resource type="Texture2D" uid="uid://bja18oj4hvj5j" path="res://Cell/src/edge.png" id="5_xm3j0"]
 [ext_resource type="PackedScene" uid="uid://c1lhapr6y2nxb" path="res://Game/Border/Border.tscn" id="9_tmpff"]
+[ext_resource type="Texture2D" uid="uid://04ptbalpgfqt" path="res://Item/perks.png" id="10_ktlu3"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_30xni")
@@ -36,12 +37,12 @@ script = ExtResource("2_ke4h0")
 max_scroll_speed = 0.0
 
 [node name="Border_Right" parent="Camera2D" instance=ExtResource("9_tmpff")]
-position = Vector2(360, 0)
+position = Vector2(300, 680)
 rotation = -1.57079
 scale = Vector2(22, 1)
 
 [node name="Border_Left" parent="Camera2D" instance=ExtResource("9_tmpff")]
-position = Vector2(-360, 0)
+position = Vector2(-300, -640)
 rotation = 1.57079
 scale = Vector2(22, 1)
 
@@ -65,7 +66,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -60.0
+offset_top = -120.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_xm3j0")
@@ -75,7 +76,7 @@ layout_mode = 2
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 700.0
-offset_bottom = 1260.0
+offset_bottom = 1239.0
 script = ExtResource("4_do4el")
 
 [node name="Label_Height_Max" type="Label" parent="CanvasLayer/Control/Bottom Row"]
@@ -105,13 +106,18 @@ size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 32
 text = "   [x]   "
 
+[node name="Current_Item" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(337, 1223)
+texture = ExtResource("10_ktlu3")
+hframes = 2
+
 [node name="Hue" parent="." instance=ExtResource("3_5kmum")]
 position = Vector2(364, -530)
 
 [node name="Cell Container" type="Node" parent="." groups=["Cell Container"]]
 
 [node name="Border_Bottom" parent="Cell Container" instance=ExtResource("9_tmpff")]
-position = Vector2(360, -60)
+position = Vector2(0, -180)
 scale = Vector2(12, 1)
 
 [node name="Item Container" type="Node" parent="." groups=["Item Container"]]

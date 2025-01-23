@@ -47,7 +47,7 @@ var jump_direction = Vector2.ZERO
 const JUMP_HORIZONTAL_BOOST = 0.75  # Reduced from 1.5
 
 func _ready() -> void:
-	cur_color = Global.active_color[0]
+	cur_color = Color.WHITE#Global.active_color[0]
 	fill.modulate = cur_color
 	InputManager.interaction_moved.connect(_on_interaction_moved)
 	InputManager.interaction_ended.connect(_on_interaction_ended)
@@ -94,7 +94,7 @@ func _process(_delta: float) -> void:
 
 func _update_grid_pos():
 	var hue_x_pos = floor((origin.global_position.x - Settings.cell_offset) / Settings.cell_size)
-	var hue_y_pos = abs(floor((origin.global_position.y + Settings.cell_offset) / Settings.cell_size))
+	var hue_y_pos = abs(floor((origin.global_position.y + Settings.cell_offset) / Settings.cell_size)+1)
 	hue_grid_pos = Vector2(hue_x_pos, hue_y_pos)
 
 func _gravity(delta):

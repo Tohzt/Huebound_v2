@@ -17,6 +17,10 @@ var is_touching = false
 var initial_touch_position = Vector2.ZERO
 var total_movement = Vector2.ZERO
 
+func _ready():
+	touch_origin.hide()
+	touch_pos.hide()
+
 func _process(_delta):
 	if is_touching:
 		var viewport = get_viewport()

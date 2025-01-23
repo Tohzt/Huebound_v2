@@ -22,7 +22,7 @@ func _on_area_2d_body_entered(Hue):
 		queue_free()
 
 func _process(_delta):
-	sprite.z_index =  abs(position.y) / 10 + 6
+	sprite.z_index = int(item_grid_pos.y+1)
 
 	
 func check_visible():
