@@ -8,6 +8,7 @@ extends Node2D
 var pos_in = position.y
 var pos_out = position.y + 60
 @onready var pos = position.y
+
 var hue: HueClass
 var color: Color
 var color_shaded: Color
@@ -17,8 +18,9 @@ var slide_speed = randf_range(5.0, 15.0)
 
 
 func _ready():
-	pos_in = position.y
-	pos_out = position.y + 60
+	pos = position.y
+	pos_in = pos
+	pos_out = pos + 60
 	hue = get_tree().get_first_node_in_group("Hue")
 	color = Global.palette_color.pick_random()
 	color_shaded = color

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://y3q547fkfi4g"]
+[gd_scene load_steps=13 format=3 uid="uid://y3q547fkfi4g"]
 
 [ext_resource type="Script" path="res://Game/game.gd" id="1_30xni"]
 [ext_resource type="Script" path="res://Game/Input/input_manager.gd" id="2_cylo2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bja18oj4hvj5j" path="res://Cell/src/edge.png" id="5_xm3j0"]
 [ext_resource type="PackedScene" uid="uid://c1lhapr6y2nxb" path="res://Game/Border/Border.tscn" id="9_tmpff"]
 [ext_resource type="Texture2D" uid="uid://04ptbalpgfqt" path="res://Item/perks.png" id="10_ktlu3"]
+[ext_resource type="Texture2D" uid="uid://drr2x2b1ro8wx" path="res://UI/UI_Frame_256.png" id="10_nb342"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_30xni")
@@ -34,7 +35,6 @@ limit_left = 0
 limit_right = 720
 limit_bottom = 60
 script = ExtResource("2_ke4h0")
-max_scroll_speed = 0.0
 
 [node name="Border_Right" parent="Camera2D" instance=ExtResource("9_tmpff")]
 position = Vector2(300, 680)
@@ -106,13 +106,47 @@ size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 32
 text = "   [x]   "
 
-[node name="Current_Item" type="Sprite2D" parent="CanvasLayer/Control"]
-position = Vector2(337, 1223)
+[node name="Control" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control/Control"]
+position = Vector2(0, -71.85)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("10_nb342")
+
+[node name="Current_Item" type="Sprite2D" parent="CanvasLayer/Control/Control"]
+position = Vector2(0, -71.17)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("10_ktlu3")
 hframes = 2
 
+[node name="Current Power" type="Label" parent="CanvasLayer/Control/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -36.825
+offset_right = 43.0
+offset_bottom = -5.825
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 22
+text = "size test"
+horizontal_alignment = 1
+
 [node name="Hue" parent="." instance=ExtResource("3_5kmum")]
-position = Vector2(364, -530)
+position = Vector2(351, -171)
 
 [node name="Cell Container" type="Node" parent="." groups=["Cell Container"]]
 

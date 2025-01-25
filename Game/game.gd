@@ -5,6 +5,7 @@ extends Node2D
 var num_rows = 40
 var num_cols = 5
 var chunk_shift = 1
+var rows_to_chunk = 10
 
 func _ready():
 	Global.new_record = false
@@ -23,7 +24,7 @@ func _build_grid():
 			#Spawn Block
 			var cell = Global.REFS.Cell.instantiate()
 			var x_pos =  x*Settings.cell_size + Settings.cell_offset
-			var y_pos = -y*Settings.cell_size - (Settings.cell_size*1.5) - Settings.cell_offset*2
+			var y_pos = -y*Settings.cell_size - (Settings.cell_size*2.5)
 			cell.position = Vector2(x_pos, y_pos)
 			get_node("Cell Container").add_child(cell)
 			
@@ -36,22 +37,20 @@ func _build_grid():
 			
 	Global.add_chunk = false
 
-func _process(_delta):
-	return
-	# When player gets close to top, recycle bottom rows
-	if Global.height > num_rows - 10:  # Triggers when player is 10 rows from top
+func _process(_dela):
+	# Recycle Cells to Top of Stack
+	if Global.height > num_rows - 10:
 		var cells = get_tree().get_nodes_in_group("Cell")
-		num_rows += 10 
 		for cell: CellClass in cells:
-			# Check if cell is in any of the next 10 rows to be recycled
-			if cell.cell_grid_pos.y >= chunk_shift and cell.cell_grid_pos.y < chunk_shift + 10:
-				# Calculate new row position based on how many rows up it should go
-				var row_offset = cell.cell_grid_pos.y - chunk_shift
-				cell.position.y = -(num_rows + 1 - (9 - row_offset)) * Settings.cell_size
+			if cell.cell_grid_pos.y >= chunk_shift \
+			and cell.cell_grid_pos.y < chunk_shift+rows_to_chunk:
+				cell.position.y = cell.pos_in
+				cell.position.y -= 40*Settings.cell_size
 				cell._ready()
 				cell.update_solid()
-		chunk_shift += 10  # Increment chunk_shift by 10 instead of 1
-
+		
+		num_rows += rows_to_chunk
+		chunk_shift += rows_to_chunk
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):

@@ -6,10 +6,9 @@ HueBound ToDo
 + Change color in-air
 + Fix Mobile Inputs
 + Chunk-swap more than 1 row at a time. 
-
 + Display current skill
-  - Needs better sizing
-  - Skill toggle/destroy over time
+
+- Skill toggle/destroy over time
 
 - Color Selection
 

@@ -1,6 +1,5 @@
 class_name GlobalClass
 extends Node
-
 const REFS ={
 	"Start": "res://Main Menu/main_menu.tscn",
 	"Game": "res://Game/Game.tscn",
