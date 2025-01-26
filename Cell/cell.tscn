@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cy22vxfxtqr2j"]
 
 [ext_resource type="Script" path="res://Cell/cell.gd" id="1_172ab"]
-[ext_resource type="Texture2D" uid="uid://d3skdrf5ichva" path="res://Cell/src/block.png" id="2_jg6x1"]
+[ext_resource type="Texture2D" uid="uid://uujg7g2fd4me" path="res://Cell/src/new_cell.png" id="2_ffhj4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vyyt"]
 size = Vector2(120, 120)
@@ -13,7 +13,7 @@ script = ExtResource("1_172ab")
 
 [node name="BlockSprite" type="Sprite2D" parent="."]
 position = Vector2(60, 30)
-texture = ExtResource("2_jg6x1")
+texture = ExtResource("2_ffhj4")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(60, 30)

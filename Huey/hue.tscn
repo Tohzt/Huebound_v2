@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjpm265g8ov4p"]
 
 [ext_resource type="Script" path="res://Huey/hue.gd" id="1_vbmsu"]
-[ext_resource type="Texture2D" uid="uid://blwvo8pjssnbr" path="res://Huey/src/Inner.png" id="2_fsddl"]
+[ext_resource type="Texture2D" uid="uid://dtx36aq800knm" path="res://Huey/src/new_inner.png" id="2_danpb"]
 [ext_resource type="Script" path="res://Huey/fill.gd" id="3_kxjvi"]
-[ext_resource type="Texture2D" uid="uid://bogcvf0h5o83s" path="res://Huey/src/hue_border.png" id="3_nv5u1"]
+[ext_resource type="Texture2D" uid="uid://lyeeajwbn5ij" path="res://Huey/src/bubble_7_grayscale.png" id="4_v5ypd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qgl5h"]
 size = Vector2(2, 2)
@@ -26,17 +26,19 @@ shape = SubResource("RectangleShape2D_qgl5h")
 position = Vector2(0, -40)
 shape = SubResource("CircleShape2D_5guqr")
 
+[node name="fill" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(0, -40)
+texture = ExtResource("2_danpb")
+offset = Vector2(1, 0)
+hframes = 9
+script = ExtResource("3_kxjvi")
+
 [node name="border" type="Sprite2D" parent="."]
 top_level = true
 position = Vector2(0, -40)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("3_nv5u1")
-
-[node name="fill" type="Sprite2D" parent="."]
-top_level = true
-position = Vector2(0, -40)
-texture = ExtResource("2_fsddl")
-script = ExtResource("3_kxjvi")
+texture = ExtResource("4_v5ypd")
 
 [node name="RC_Right" type="RayCast2D" parent="."]
 target_position = Vector2(50, 0)
