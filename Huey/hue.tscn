@@ -29,6 +29,7 @@ shape = SubResource("CircleShape2D_5guqr")
 [node name="fill" type="Sprite2D" parent="."]
 top_level = true
 position = Vector2(0, -40)
+scale = Vector2(0.64, 0.64)
 texture = ExtResource("2_danpb")
 offset = Vector2(1, 0)
 hframes = 9

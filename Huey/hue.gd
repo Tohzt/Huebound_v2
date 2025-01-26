@@ -122,11 +122,11 @@ func _swap_colors():
 		var cells = get_tree().get_nodes_in_group("Cell")
 		for cell: CellClass in cells:
 			if cell.cell_grid_pos == hue_grid_pos:
-				cur_color = cell.color
+				cur_color = cell.color  # Immediately update the active color
 				cell.color = _col
 				cell.color_shaded = _col
 				cell.block_sprite.modulate = _col.darkened(0.25)
-				fill.modulate = cur_color
+				fill.start_animation(cur_color)  # Pass the new color to the animation
 				color_swapped = true
 				break
 
