@@ -8,9 +8,13 @@ var item_grid_pos: Vector2
 var toggle_visible = false
 
 func _ready():
-	power = ["triple_jump","wall_cling"].pick_random()
+	power = ["triple_jump","wall_cling", "shuffle", "random_swap"].pick_random()
 	if power == "wall_cling":
 		$Sprite2D.frame = 1
+	if power == "shuffle":
+		$Sprite2D.frame = 2
+	if power == "random_swap":
+		$Sprite2D.frame = 3
 	var item_x_pos = floor((global_position.x - Settings.cell_offset) / Settings.cell_size)
 	var item_y_pos = abs(floor((global_position.y + Settings.cell_offset) / Settings.cell_size))
 	item_grid_pos = Vector2(item_x_pos, item_y_pos-1)

@@ -21,11 +21,15 @@ const JUMP_VELOCITY: float = -500.0
 var power: String = ""
 var jump: int = 0
 var jump_max: int = 2
-var wall_cling: bool = false
 var cur_color: Color
 var climbing: bool = true
 var alive = true
 var color_swapped: bool = true
+
+## Power Ups
+var wall_cling: bool = false
+var shuffle_grid = false
+var random_swap = false
 
 ## Movement State
 var active: bool  = true
@@ -123,14 +127,23 @@ func _swap_colors():
 		var _col: Color = cur_color
 		var cells = get_tree().get_nodes_in_group("Cell")
 		for cell: CellClass in cells:
+			if shuffle_grid:
+				var cell_prev_color = cell.color
+				cell.color = Global.palette_color.pick_random()
+				cell.color_shaded = cell.color
+				cell.block_sprite.modulate = cell.color
+				if !cell.cell_solid:
+					cell.block_sprite.modulate = cell.color.darkened(0.5)
 			if cell.cell_grid_pos == hue_grid_pos:
 				cur_color = cell.color  # Immediately update the active color
+				if random_swap :
+					cur_color = Global.palette_color.pick_random()
 				cell.color = _col
 				cell.color_shaded = _col
-				cell.block_sprite.modulate = _col.darkened(0.25)
+				cell.block_sprite.modulate = _col.darkened(0.5)
 				fill.start_animation(cur_color)  # Pass the new color to the animation
 				color_swapped = true
-				break
+
 
 func _climbing():
 	if climbing: 
@@ -154,12 +167,17 @@ func _friction(delta):
 func _power_ups():
 	jump_max = 2
 	wall_cling = false
+	shuffle_grid = false
+	random_swap = false
 	match power:
 		"triple_jump":
 			jump_max = 3
-		
 		"wall_cling":
 			wall_cling = true
+		"shuffle":
+			shuffle_grid = true
+		"random_swap":
+			random_swap = true
 
 func _jump_and_toggle_cells():
 	if mv_jump and jump < jump_max:

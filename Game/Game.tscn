@@ -126,7 +126,7 @@ texture = ExtResource("10_nb342")
 position = Vector2(0, -71.17)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("10_ktlu3")
-hframes = 2
+hframes = 4
 
 [node name="Current Power" type="Label" parent="CanvasLayer/Control/Control"]
 layout_mode = 1

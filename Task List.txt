@@ -7,19 +7,17 @@ HueBound ToDo
 + Fix Mobile Inputs
 + Chunk-swap more than 1 row at a time. 
 + Display current skill
++ Animated Huey
 
-- Skill toggle/destroy over time
+? Skill toggle/destroy over time
 
 - Color Selection
 
 - Death Anim
-- Animated Huey
 - Splash Screen / Icon
 
 X - Lose Joystick sprites after 80-ish rows
-x - hitting z-max
-  - Now working off of grid y pos, which is better. Still need to normalize/offset eventually
-
+? - hitting z-max - only an issue after 4000-ish
 
 
 
@@ -27,3 +25,17 @@ New Skills
 - Teleport to next free space above selected color
 - Double-active colors (using Hueys body and skin) 
 - Random body color
+- Color Lock
+  - Color gets locked solid for some number of jumps/rows
+- Clear current active color
+- Forces Swap
+  - Lose ability to jump until next swap
+
+
+
+
+Limited Skill Usage?
+  - Triple Jump
+    - How many do i get?
+  - Wall Cling
+    - stamina??

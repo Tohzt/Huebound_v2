@@ -16,7 +16,7 @@ z_as_relative = false
 y_sort_enabled = true
 scale = Vector2(2, 2)
 texture = ExtResource("2_ediwo")
-hframes = 2
+hframes = 4
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
