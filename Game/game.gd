@@ -17,8 +17,7 @@ func _build_grid():
 	if !Global.add_chunk: return
 	var yy = num_rows
 	var xx = num_cols
-	#var cur_cel = 0
-	var _freq = Settings.item_frequency
+	
 	for y in yy:
 		for x in xx:
 			#Spawn Block
@@ -27,13 +26,8 @@ func _build_grid():
 			var y_pos = -y*Settings.cell_size - (Settings.cell_size*2.5)
 			cell.position = Vector2(x_pos, y_pos)
 			get_node("Cell Container").add_child(cell)
-			
-			# TODO: Check if items spawn after chunking
-			if y > 1 and randi() % 100 < _freq:
-				var item = Global.REFS.Item.instantiate()
-				var cell_offset = Vector2(60, -60)
-				item.position = cell.position + cell_offset
-				get_node("Item Container").add_child(item)
+			if y > 10:
+				_add_item(cell)
 			
 	Global.add_chunk = false
 
@@ -48,9 +42,17 @@ func _process(_dela):
 				cell.position.y -= 40*Settings.cell_size
 				cell._ready()
 				cell.update_solid()
+				_add_item(cell)
 		
 		num_rows += rows_to_chunk
 		chunk_shift += rows_to_chunk
+
+func _add_item(cell):
+	if randi() % 100 > Settings.item_frequency: return
+	var item = Global.REFS.Item.instantiate()
+	var cell_offset = Vector2(60, -60)
+	item.position = cell.position + cell_offset
+	get_node("Item Container").add_child(item)
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):

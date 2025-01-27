@@ -16,10 +16,11 @@ func _ready():
 func _process(delta):
 	var target_position = get_parent().position
 	target_position.y = get_parent().position.y-40
-	global_position = lerp(global_position, target_position, delta*10)
+	var spd = 10
+	global_position = lerp(global_position, target_position, delta*spd)
 	$"../border".global_position.x = get_parent().position.x
 	$"../border".global_position.y = get_parent().position.y-40
-	
+	$"../backfill".global_position = global_position
 	if animating:
 		animate(delta)
 

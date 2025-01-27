@@ -4,7 +4,7 @@ extends Camera2D
 @onready var start_pos = position
 
 @export var base_scroll_speed: float = 5.0  # Base speed per height tier
-@export var max_scroll_speed: float = 60.0  # Maximum scroll speed
+@export var max_scroll_speed: float = 80.0  # Maximum scroll speed
 var current_scroll_speed = 0.0  # Current scroll speed
 
 func _ready():

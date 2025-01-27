@@ -54,6 +54,6 @@ func update_solid():
 		if cell_grid_pos == hue.hue_grid_pos:
 			hue.death_to_heuy()
 	else:
-		block_sprite.modulate = color_shaded.darkened(0.3)
+		block_sprite.modulate = color_shaded.darkened(0.5)
 		cell_solid = false
 		pos = pos_in

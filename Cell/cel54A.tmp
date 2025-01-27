@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy22vxfxtqr2j"]
+
+[ext_resource type="Script" path="res://Cell/cell.gd" id="1_172ab"]
+[ext_resource type="Texture2D" uid="uid://uujg7g2fd4me" path="res://Cell/src/new_cell.png" id="2_ffhj4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vyyt"]
+size = Vector2(120, 120)
+
+[node name="Cell" type="Node2D" groups=["Cell"]]
+top_level = true
+z_as_relative = false
+script = ExtResource("1_172ab")
+
+[node name="BlockSprite" type="Sprite2D" parent="."]
+position = Vector2(60, 30)
+texture = ExtResource("2_ffhj4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(60, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_4vyyt")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 4096
+offset_left = 10.0
+offset_top = 60.0
+offset_right = 50.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(0, 0.713726, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "()"
+horizontal_alignment = 1
+vertical_alignment = 1

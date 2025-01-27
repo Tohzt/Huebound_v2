@@ -10,6 +10,7 @@ const JUMP_VELOCITY: float = -500.0
 @onready var start_pos: Vector2 = position
 @onready var width: float = 80.0 * scale.x
 @onready var origin: Area2D = $Origin
+@onready var backfill: Sprite2D = $backfill
 @onready var fill: Sprite2D = $fill
 @onready var border: Sprite2D = $border
 @onready var rc_right: RayCast2D = $RC_Right
@@ -85,6 +86,7 @@ func set_active_color(colors: Array[Color]) -> void:
 	Global.active_color = colors
 
 func _process(_delta: float) -> void:
+	backfill.z_index = int(hue_grid_pos.y+1)
 	fill.z_index = int(hue_grid_pos.y+1)
 	border.z_index = int(hue_grid_pos.y+1)
 	#fill.z_index = -int(position.y/100) + 100/100
