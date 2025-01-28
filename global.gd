@@ -20,6 +20,7 @@ var active_color: Array[Color] = []
 
 var height = 0
 var height_max = 20
+var top_10 = INF
 
 var add_chunk = false
 
@@ -56,6 +57,8 @@ func _fetch_leaderboard():
 		# Find the highest score from the leaderboard
 		var highest_score = 0
 		for score_data in sw_result.scores:
+			if score_data.score < top_10:
+				top_10 = score_data.score
 			if score_data.score > highest_score:
 				highest_score = score_data.score
 		# Update the global height_max with the highest score

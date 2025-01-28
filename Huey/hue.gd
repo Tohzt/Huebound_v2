@@ -128,7 +128,6 @@ func _swap_colors():
 		var cells = get_tree().get_nodes_in_group("Cell")
 		for cell: CellClass in cells:
 			if shuffle_grid:
-				var cell_prev_color = cell.color
 				cell.color = Global.palette_color.pick_random()
 				cell.color_shaded = cell.color
 				cell.block_sprite.modulate = cell.color
@@ -148,7 +147,7 @@ func _swap_colors():
 func _climbing():
 	if climbing: 
 		Global.height = int(abs(global_position.y) / Settings.cell_size)
-		if Global.height > Global.height_max:
+		if Global.height > Global.top_10:
 			Global.height_max = Global.height
 			Global.new_record = true
 	elif int(abs(global_position.y) / Settings.cell_size) <= 1:
