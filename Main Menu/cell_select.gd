@@ -1,25 +1,21 @@
 extends Button
+@onready var texture_rect = $HBoxContainer/TextureRect
+@onready var texture_rect_2 = $HBoxContainer/TextureRect2
+@onready var texture_rect_3 = $HBoxContainer/TextureRect3
+@onready var texture_rect_4 = $HBoxContainer/TextureRect4
+
+@export var col_1: Color = Color.WHITE
+@export var col_2: Color
+@export var col_3: Color
+@export var col_4: Color
 
 var selected = false
-@export var index: int
-@export var color: Color
-@onready var color_rect: ColorRect = $ColorRect
 
 func _ready():
-	color_rect.color = color
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	selected = Global.palette_color.has(color)
-	
-	if selected:
-		color_rect.color.a = 1.0
-	else:
-		color_rect.color.a = 0.25
-
+	texture_rect.modulate = col_1
+	texture_rect_2.modulate = col_2
+	texture_rect_3.modulate = col_3
+	texture_rect_4.modulate = col_4
 
 func _on_pressed():
-	if selected:
-		Global.palette_color.erase(color)
-	else:
-		Global.palette_color.append(color)
+	Global.palette_color = [col_1, col_2, col_3, col_4]

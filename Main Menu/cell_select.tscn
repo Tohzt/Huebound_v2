@@ -1,21 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://iffpd13twfxi"]
+[gd_scene load_steps=3 format=3 uid="uid://iffpd13twfxi"]
 
 [ext_resource type="Script" path="res://Main Menu/cell_select.gd" id="1_d4nrk"]
+[ext_resource type="Texture2D" uid="uid://brlnerterj7pl" path="res://UI/palette_select.png" id="2_lxnfq"]
 
 [node name="Cell Select" type="Button"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -118.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "      "
 script = ExtResource("1_d4nrk")
+col_1 = Color(1, 0, 0, 1)
+col_2 = Color(0, 1, 0, 1)
+col_3 = Color(0, 0, 1, 1)
+col_4 = Color(1, 1, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -246.0
+offset_top = -60.5
+offset_right = 246.0
+offset_bottom = 60.5
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_lxnfq")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_lxnfq")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_lxnfq")
+stretch_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_lxnfq")
+stretch_mode = 2
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

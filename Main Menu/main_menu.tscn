@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfpfr4n2qwii4"]
+[gd_scene load_steps=7 format=3 uid="uid://cfpfr4n2qwii4"]
 
 [ext_resource type="Script" path="res://Main Menu/main_menu.gd" id="1_pb3t0"]
 [ext_resource type="Script" path="res://Main Menu/center_container.gd" id="2_a4c85"]
 [ext_resource type="Texture2D" uid="uid://drr2x2b1ro8wx" path="res://UI/UI_Frame_256.png" id="2_ktwyl"]
 [ext_resource type="Script" path="res://Main Menu/settings_options.gd" id="3_5may6"]
 [ext_resource type="PackedScene" uid="uid://iffpd13twfxi" path="res://Main Menu/cell_select.tscn" id="4_vui36"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fha5o"]
+texture = ExtResource("2_ktwyl")
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -73,76 +76,57 @@ text = "EXIT"
 layout_mode = 2
 script = ExtResource("3_5may6")
 
+[node name="Cell Select" parent="Container/Settings Options" instance=ExtResource("4_vui36")]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Cell Select2" parent="Container/Settings Options" instance=ExtResource("4_vui36")]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_vertical = 4
+col_1 = Color(0.294118, 0.568627, 0.886275, 1)
+col_2 = Color(0.313726, 0.886275, 0.764706, 1)
+col_3 = Color(0.960784, 0.647059, 0.141176, 1)
+col_4 = Color(0.811765, 0.00784314, 0.101961, 1)
+
+[node name="Cell Select3" parent="Container/Settings Options" instance=ExtResource("4_vui36")]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_vertical = 4
+col_1 = Color(0, 0.701961, 0.666667, 1)
+col_2 = Color(1, 0.431373, 0.380392, 1)
+col_3 = Color(1, 0.607843, 0.239216, 1)
+col_4 = Color(1, 0.878431, 0.341176, 1)
+
+[node name="Cell Select4" parent="Container/Settings Options" instance=ExtResource("4_vui36")]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_vertical = 4
+col_1 = Color(0.976471, 0.772549, 0.305882, 1)
+col_2 = Color(0.568627, 0.745098, 0.435294, 1)
+col_3 = Color(0.337255, 0.466667, 0.560784, 1)
+col_4 = Color(0.976471, 0.262745, 0.27451, 1)
+
+[node name="Cell Select5" parent="Container/Settings Options" instance=ExtResource("4_vui36")]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_vertical = 4
+col_1 = Color(1, 0.85098, 0, 1)
+col_2 = Color(0.670588, 1, 0.180392, 1)
+col_3 = Color(0, 0.74902, 1, 1)
+col_4 = Color(1, 0.419608, 0.709804, 1)
+
 [node name="BTN_Back" type="Button" parent="Container/Settings Options"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 32
-text = "Back"
-
-[node name="GridContainer" type="GridContainer" parent="Container/Settings Options"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 3
-theme_override_constants/h_separation = 40
-theme_override_constants/v_separation = 40
-columns = 3
-
-[node name="Cell Select" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
-layout_mode = 2
-
-[node name="Cell Select2" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
-layout_mode = 2
-index = 1
-color = Color(1, 1, 1, 1)
-
-[node name="Cell Select3" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
-layout_mode = 2
-index = 2
-color = Color(1, 0, 0.541176, 1)
-
-[node name="Cell Select4" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
-layout_mode = 2
-index = 3
-color = Color(0, 0.909804, 0.992157, 1)
-
-[node name="Cell Select5" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
-layout_mode = 2
-index = 4
-color = Color(1, 0.937255, 0, 1)
-
-[node name="Cell Select6" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
-layout_mode = 2
-index = 5
-color = Color(1, 0.494118, 0, 1)
-
-[node name="Cell Select7" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
-layout_mode = 2
-index = 6
-color = Color(0.988235, 0, 1, 1)
-
-[node name="Cell Select8" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
-layout_mode = 2
-index = 7
-color = Color(0, 0, 1, 1)
-
-[node name="Cell Select9" parent="Container/Settings Options/GridContainer" instance=ExtResource("4_vui36")]
-layout_mode = 2
-index = 8
-color = Color(0, 1, 0, 1)
-
-[node name="Label" type="Label" parent="Container/Settings Options"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "
-"
-
-[node name="on-screen input" type="CheckBox" parent="Container/Settings Options"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "On-Screen Input: "
+theme_override_styles/normal = SubResource("StyleBoxTexture_fha5o")
+text = "    Back    "
 
 [connection signal="pressed" from="Container/Menu Options/BTN_Start" to="." method="_on_btn_start_pressed"]
 [connection signal="pressed" from="Container/Menu Options/BTN_Settings" to="Container" method="_on_btn_settings_pressed"]
 [connection signal="pressed" from="Container/Menu Options/BTN_Leaderboard" to="Container" method="_on_btn_leaderboard_pressed"]
 [connection signal="pressed" from="Container/Menu Options/BTN_EXIT" to="." method="_on_btn_exit_pressed"]
 [connection signal="pressed" from="Container/Settings Options/BTN_Back" to="Container" method="_on_btn_back_pressed"]
-[connection signal="pressed" from="Container/Settings Options/on-screen input" to="Container/Settings Options" method="_on_onscreen_input_pressed"]
