@@ -133,7 +133,8 @@ func _swap_colors():
 				cell.block_sprite.modulate = cell.color
 				if !cell.cell_solid:
 					cell.block_sprite.modulate = cell.color.darkened(0.5)
-			if cell.cell_grid_pos == hue_grid_pos:
+				color_swapped = true
+			elif cell.cell_grid_pos == hue_grid_pos:
 				cur_color = cell.color  # Immediately update the active color
 				if random_swap :
 					cur_color = Global.palette_color.pick_random()

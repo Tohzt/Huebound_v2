@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://y3q547fkfi4g"]
+[gd_scene load_steps=14 format=3 uid="uid://y3q547fkfi4g"]
 
 [ext_resource type="Script" path="res://Game/game.gd" id="1_30xni"]
 [ext_resource type="Script" path="res://Game/Input/input_manager.gd" id="2_cylo2"]
@@ -11,7 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://bja18oj4hvj5j" path="res://Cell/src/edge.png" id="5_xm3j0"]
 [ext_resource type="PackedScene" uid="uid://c1lhapr6y2nxb" path="res://Game/Border/Border.tscn" id="9_tmpff"]
 [ext_resource type="Texture2D" uid="uid://04ptbalpgfqt" path="res://Item/perks.png" id="10_ktlu3"]
-[ext_resource type="Texture2D" uid="uid://drr2x2b1ro8wx" path="res://UI/UI_Frame_256.png" id="10_nb342"]
+[ext_resource type="Texture2D" uid="uid://e5vn5j50b7ct" path="res://UI/Button_Theme_64.png" id="10_ocdff"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5stji"]
+texture = ExtResource("10_ocdff")
+texture_margin_left = 22.0
+texture_margin_top = 19.0
+texture_margin_right = 22.0
+texture_margin_bottom = 19.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_30xni")
@@ -104,7 +111,10 @@ offset_bottom = 94.0
 grow_horizontal = 0
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 32
-text = "   [x]   "
+theme_override_styles/focus = SubResource("StyleBoxTexture_5stji")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5stji")
+theme_override_styles/normal = SubResource("StyleBoxTexture_5stji")
+text = "[x]"
 
 [node name="Control" type="Control" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -117,10 +127,10 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control/Control"]
+[node name="PowerContainer" type="Sprite2D" parent="CanvasLayer/Control/Control"]
 position = Vector2(0, -71.85)
-scale = Vector2(0.3125, 0.3125)
-texture = ExtResource("10_nb342")
+scale = Vector2(1.3125, 1.3125)
+texture = ExtResource("10_ocdff")
 
 [node name="Current_Item" type="Sprite2D" parent="CanvasLayer/Control/Control"]
 position = Vector2(0, -71.17)

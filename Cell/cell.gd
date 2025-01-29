@@ -24,7 +24,7 @@ func _ready():
 	hue = get_tree().get_first_node_in_group("Hue")
 	color = Global.palette_color.pick_random()
 	color_shaded = color
-	block_sprite.modulate = color_shaded.darkened(0.3)
+	block_sprite.modulate = color_shaded.darkened(0.5)
 	var cell_x_pos = floor(global_position.x / Settings.cell_size)
 	var cell_y_pos = abs(floor((global_position.y + 60) / Settings.cell_size)+1)
 	cell_grid_pos = Vector2(cell_x_pos, cell_y_pos)

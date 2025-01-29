@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfpfr4n2qwii4"]
+[gd_scene load_steps=6 format=3 uid="uid://cfpfr4n2qwii4"]
 
 [ext_resource type="Script" path="res://Main Menu/main_menu.gd" id="1_pb3t0"]
 [ext_resource type="Script" path="res://Main Menu/center_container.gd" id="2_a4c85"]
 [ext_resource type="Texture2D" uid="uid://drr2x2b1ro8wx" path="res://UI/UI_Frame_256.png" id="2_ktwyl"]
 [ext_resource type="Script" path="res://Main Menu/settings_options.gd" id="3_5may6"]
 [ext_resource type="PackedScene" uid="uid://iffpd13twfxi" path="res://Main Menu/cell_select.tscn" id="4_vui36"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fha5o"]
-texture = ExtResource("2_ktwyl")
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -54,6 +51,7 @@ grow_vertical = 2
 script = ExtResource("2_a4c85")
 
 [node name="Menu Options" type="VBoxContainer" parent="Container"]
+visible = false
 layout_mode = 2
 
 [node name="BTN_Start" type="Button" parent="Container/Menu Options"]
@@ -117,12 +115,14 @@ col_2 = Color(0.670588, 1, 0.180392, 1)
 col_3 = Color(0, 0.74902, 1, 1)
 col_4 = Color(1, 0.419608, 0.709804, 1)
 
+[node name="Label" type="Label" parent="Container/Settings Options"]
+layout_mode = 2
+
 [node name="BTN_Back" type="Button" parent="Container/Settings Options"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxTexture_fha5o")
 text = "    Back    "
 
 [connection signal="pressed" from="Container/Menu Options/BTN_Start" to="." method="_on_btn_start_pressed"]

@@ -51,9 +51,11 @@ scale = Vector2(1.25, 1.25)
 texture = ExtResource("4_v5ypd")
 
 [node name="RC_Right" type="RayCast2D" parent="."]
+position = Vector2(0, -40)
 target_position = Vector2(50, 0)
 
 [node name="RC_Left" type="RayCast2D" parent="."]
+position = Vector2(0, -40)
 target_position = Vector2(-50, 0)
 
 [node name="Label" type="Label" parent="."]
