@@ -2,6 +2,7 @@ extends Control
 @onready var current_item = $Control/Current_Item
 @onready var current_power = $"Control/Current Power"
 @onready var power_container = $Control/PowerContainer
+@onready var btn_exit = $BTN_Exit
 
 var Hue: HueClass
 
@@ -9,6 +10,7 @@ func _ready():
 	Hue = get_tree().get_first_node_in_group("Hue")
 
 func _process(_delta):
+	btn_exit.modulate = Hue.cur_color
 	power_container.modulate = Hue.cur_color
 	current_power.text = Hue.power
 	match Hue.power:

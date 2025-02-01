@@ -32,6 +32,12 @@ func _ready():
 
 
 func _process(delta):
+	if !cell_solid:
+		if hue.cur_color == color.darkened(0.0):
+			block_sprite.modulate = color_shaded.darkened(0.15)
+		else:
+			block_sprite.modulate = color_shaded.darkened(0.3)
+
 	block_sprite.z_index = int(cell_grid_pos.y+1)
 	if !cell_solid:
 		block_sprite.z_index = int(cell_grid_pos.y-1)
@@ -50,6 +56,6 @@ func update_solid():
 		if cell_grid_pos == hue.hue_grid_pos:
 			hue.death_to_heuy()
 	else:
-		block_sprite.modulate = color_shaded.darkened(0.5)
+		block_sprite.modulate = color_shaded.darkened(0.3)
 		cell_solid = false
 		pos = pos_in

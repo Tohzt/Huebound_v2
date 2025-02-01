@@ -90,14 +90,10 @@ func set_active_color(colors: Array[Color]) -> void:
 	Global.active_color = colors
 
 func _process(_delta: float) -> void:
-	print(Global.active_color)
 	backfill.z_index = int(hue_grid_pos.y+1)
 	fill.z_index = int(hue_grid_pos.y+1)
 	border.z_index = int(hue_grid_pos.y+1)
-	#fill.z_index = -int(position.y/100) + 100/100
-	#border.z_index = -int(position.y/100) + 100/100
-	#label.text = "[" + str(int(-position.y)) + "]"
-	label.text = "[" + str(border.z_index) + "]"
+	#label.text = "[" + str(border.z_index) + "]"
 
 func _update_grid_pos():
 	var hue_x_pos = floor((origin.global_position.x - Settings.cell_offset) / Settings.cell_size)
