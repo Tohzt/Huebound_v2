@@ -7,6 +7,7 @@ func _ready():
 
 
 func _on_btn_start_pressed():
+	Global.active_color.clear()
 	get_tree().change_scene_to_file(Global.REFS.Game)
 
 

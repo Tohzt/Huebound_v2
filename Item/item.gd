@@ -18,6 +18,7 @@ func _ready():
 	var item_x_pos = floor((global_position.x - Settings.cell_offset) / Settings.cell_size)
 	var item_y_pos = abs(floor((global_position.y + Settings.cell_offset) / Settings.cell_size))
 	item_grid_pos = Vector2(item_x_pos, item_y_pos-1)
+	check_visible()
 
 func _on_area_2d_body_entered(Hue): 
 	if !Hue: return
@@ -27,8 +28,8 @@ func _on_area_2d_body_entered(Hue):
 
 func _process(_delta):
 	sprite.z_index = int(item_grid_pos.y+1)
+	check_visible()
 
-	
 func check_visible():
 	var cells = get_tree().get_nodes_in_group("Cell")
 	for cell: CellClass in cells:

@@ -31,7 +31,7 @@ var score = 0
 var new_record = false
 
 func _ready():
-	active_color = [palette_color.pick_random()]
+	#active_color = [palette_color.pick_random()]
 	
 	var file = FileAccess.open("res://apiKey.env", FileAccess.READ)
 	var apiKey = file.get_as_text()

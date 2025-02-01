@@ -18,6 +18,7 @@ func _process(_delta):
 
 
 func _on_btn_play_again_pressed():
+	Global.active_color.clear()
 	get_tree().change_scene_to_file(Global.REFS.Game)
 
 func _on_btn_exit_pressed():

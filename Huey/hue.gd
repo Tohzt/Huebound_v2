@@ -90,6 +90,7 @@ func set_active_color(colors: Array[Color]) -> void:
 	Global.active_color = colors
 
 func _process(_delta: float) -> void:
+	print(Global.active_color)
 	backfill.z_index = int(hue_grid_pos.y+1)
 	fill.z_index = int(hue_grid_pos.y+1)
 	border.z_index = int(hue_grid_pos.y+1)
@@ -138,9 +139,10 @@ func _swap_colors():
 				cur_color = cell.color  # Immediately update the active color
 				if random_swap :
 					cur_color = Global.palette_color.pick_random()
-				cell.color = _col
-				cell.color_shaded = _col
-				cell.block_sprite.modulate = _col.darkened(0.5)
+				else:
+					cell.color = _col
+					cell.color_shaded = _col
+					cell.block_sprite.modulate = _col.darkened(0.5)
 				fill.start_animation(cur_color)  # Pass the new color to the animation
 				color_swapped = true
 

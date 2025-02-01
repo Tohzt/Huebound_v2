@@ -28,17 +28,13 @@ func _ready():
 	var cell_x_pos = floor(global_position.x / Settings.cell_size)
 	var cell_y_pos = abs(floor((global_position.y + 60) / Settings.cell_size)+1)
 	cell_grid_pos = Vector2(cell_x_pos, cell_y_pos)
+	update_solid()
 
 
 func _process(delta):
 	block_sprite.z_index = int(cell_grid_pos.y+1)
 	if !cell_solid:
 		block_sprite.z_index = int(cell_grid_pos.y-1)
-	#block_sprite.z_index = -int(position.y/100)
-	#if !cell_solid:
-		#block_sprite.z_index = -int(position.y/100) - 300/100
-
-	#block_sprite.z_index = abs(position.y) / 10
 	
 	#label.text = "(" + str(cell_grid_pos.x)+","+str(cell_grid_pos.y) +")"
 	label.text = "(" + str(block_sprite.z_index) +")"
