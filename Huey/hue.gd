@@ -12,10 +12,11 @@ const JUMP_VELOCITY: float = -500.0
 @onready var origin: Area2D = $Origin
 @onready var backfill: Sprite2D = $backfill
 @onready var fill: Sprite2D = $fill
-@onready var border: Sprite2D = $border
+@onready var border: AnimatedSprite2D = $border
 @onready var rc_right: RayCast2D = $RC_Right
 @onready var rc_left: RayCast2D = $RC_Left
 @onready var InputManager = $"../InputManager"  # Adjust path as needed
+@onready var camera: Camera2D = get_parent().get_node("Camera2D")
 
 ## Character State
 var power: String = ""
@@ -25,6 +26,7 @@ var cur_color: Color
 var climbing: bool = true
 var alive = true
 var color_swapped: bool = true
+var death_pos: Vector2
 
 ## Power Ups
 var wall_cling: bool = false
@@ -52,6 +54,7 @@ var jump_direction = Vector2.ZERO
 const JUMP_HORIZONTAL_BOOST = 0.75  # Reduced from 1.5
 
 func _ready() -> void:
+	border.play("Idle")
 	cur_color = Color.WHITE#Global.active_color[0]
 	fill.modulate = cur_color
 	InputManager.interaction_moved.connect(_on_interaction_moved)
@@ -89,11 +92,39 @@ func set_active_color(colors: Array[Color]) -> void:
 	Global.active_color.clear()
 	Global.active_color = colors
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if !alive: return
+	if velocity.length() > 100:
+		var v_len_max = 500
+		var v_len = max(velocity.length(), v_len_max)
+		border.play("Move")
+		border.speed_scale = lerp (1, 3, v_len/v_len_max)
+	else:
+		border.play("Idle")
 	backfill.z_index = int(hue_grid_pos.y+1)
 	fill.z_index = int(hue_grid_pos.y+1)
 	border.z_index = int(hue_grid_pos.y+1)
 	#label.text = "[" + str(border.z_index) + "]"
+
+func _physics_process(delta):
+	if !alive: 
+		position.y = lerp(position.y, death_pos.y + 60, delta*10)
+		camera.zoom = lerp(camera.zoom, Vector2(2,2), delta*5)
+		camera.position = lerp(camera.position, position, delta*10)
+		
+		return
+	_update_grid_pos()
+	_gravity(delta)
+	_limit_borders()
+	_swap_colors()
+	_climbing()
+	_friction(delta)
+	_power_ups()
+	_jump_and_toggle_cells()
+	if active: _listen_for_input(delta)
+	_respond_to_input()
+	_death_under_camera()
+
 
 func _update_grid_pos():
 	var hue_x_pos = floor((origin.global_position.x - Settings.cell_offset) / Settings.cell_size)
@@ -244,25 +275,11 @@ func _respond_to_input():
 	move_and_slide()
 
 func _death_under_camera():
-	var camera = get_parent().get_node("Camera2D")
 	var camera_bottom = camera.global_position.y + get_viewport_rect().size.y/2
 	if global_position.y > camera_bottom + 50:  # Add small buffer of 100 pixels
 		death_to_heuy()
-	
-func _physics_process(delta):
-	_update_grid_pos()
-	_gravity(delta)
-	_limit_borders()
-	_swap_colors()
-	_climbing()
-	_friction(delta)
-	_power_ups()
-	_jump_and_toggle_cells()
-	if active: _listen_for_input(delta)
-	_respond_to_input()
-	_death_under_camera()
-	if !alive: 
-		get_tree().change_scene_to_file(Global.REFS.Win_Lose)
+
+
 
 func update_cells():
 	var cells = get_tree().get_nodes_in_group("Cell")
@@ -280,8 +297,15 @@ func _on_joystick_move_vector(move: Vector2, tap: bool, swipe: Vector2):
 	input_swipe = swipe
 
 func death_to_heuy():
+	if alive:
+		death_pos = position
+		if Global.new_record:
+			Global.new_record = true
 	alive = false
-	print_debug("DEAD")
-	position = start_pos
-	if Global.new_record:
-		Global.new_record = true
+	
+	backfill.z_index = 4000
+	fill.z_index = 4000
+	border.z_index = 4000
+	Engine.time_scale = 0.05
+	await get_tree().create_timer(3).timeout
+	get_tree().change_scene_to_file(Global.REFS.Win_Lose)

@@ -9,13 +9,19 @@ HueBound ToDo
 + Display current skill
 + Animated Huey
 + Color Selection
++ Fix darkness on load to match non-solid darkness (0.5?)
+
+- UI with Game Assets
+- Death Anim
+  - Slow down time as block pushes Hue forward and pops. 
+  - Cells lose color
+  - Hue inner falls uncontrollably while speed ramps back up
+  - Hue inner splat animation on ground row
 
 - Local high score
 - LB position on win_lose screen
 - Tell players what the powerups do
-- Fix darkness on load to match non-solid darkness (0.5?)
 
-- Death Anim
 - Splash Screen / Icon
 
 X - Lose Joystick sprites after 80-ish rows

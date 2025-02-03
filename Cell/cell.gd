@@ -36,14 +36,14 @@ func _process(delta):
 		if hue.cur_color == color.darkened(0.0):
 			block_sprite.modulate = color_shaded.darkened(0.15)
 		else:
-			block_sprite.modulate = color_shaded.darkened(0.3)
+			block_sprite.modulate = color_shaded.darkened(0.5)
 
 	block_sprite.z_index = int(cell_grid_pos.y+1)
 	if !cell_solid:
 		block_sprite.z_index = int(cell_grid_pos.y-1)
 	
 	#label.text = "(" + str(cell_grid_pos.x)+","+str(cell_grid_pos.y) +")"
-	label.text = "(" + str(block_sprite.z_index) +")"
+	#label.text = "(" + str(block_sprite.z_index) +")"
 	position.y = lerp(position.y, pos, delta * slide_speed)
 	
 	cell.set_collision_layer_value(1, cell_solid)
@@ -56,6 +56,6 @@ func update_solid():
 		if cell_grid_pos == hue.hue_grid_pos:
 			hue.death_to_heuy()
 	else:
-		block_sprite.modulate = color_shaded.darkened(0.3)
+		block_sprite.modulate = color_shaded.darkened(0.5)
 		cell_solid = false
 		pos = pos_in

@@ -3,7 +3,7 @@ extends Node2D
 @onready var Hue = $Hue
 
 var num_rows = 40
-var num_cols = 5
+var num_cols = 6
 var chunk_shift = 1
 var rows_to_chunk = 10
 

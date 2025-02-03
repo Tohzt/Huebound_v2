@@ -1,15 +1,71 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjpm265g8ov4p"]
+[gd_scene load_steps=15 format=3 uid="uid://bjpm265g8ov4p"]
 
 [ext_resource type="Script" path="res://Huey/hue.gd" id="1_vbmsu"]
 [ext_resource type="Texture2D" uid="uid://dtx36aq800knm" path="res://Huey/src/new_inner.png" id="2_danpb"]
+[ext_resource type="Texture2D" uid="uid://dqsn7louredy7" path="res://Huey/src/hue_inner_outline.png" id="3_57imn"]
 [ext_resource type="Script" path="res://Huey/fill.gd" id="3_kxjvi"]
-[ext_resource type="Texture2D" uid="uid://lyeeajwbn5ij" path="res://Huey/src/bubble_7_grayscale.png" id="4_v5ypd"]
+[ext_resource type="Texture2D" uid="uid://ccb47clc5kumh" path="res://Huey/src/hue_outer_wobble.png" id="4_xja6y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qgl5h"]
 size = Vector2(2, 2)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5guqr"]
 radius = 40.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm5xu"]
+atlas = ExtResource("4_xja6y")
+region = Rect2(0, 0, 94, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4geqo"]
+atlas = ExtResource("4_xja6y")
+region = Rect2(0, 0, 94, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erjsj"]
+atlas = ExtResource("4_xja6y")
+region = Rect2(94, 0, 94, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivmoo"]
+atlas = ExtResource("4_xja6y")
+region = Rect2(188, 0, 94, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8531"]
+atlas = ExtResource("4_xja6y")
+region = Rect2(94, 84, 94, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipi21"]
+atlas = ExtResource("4_xja6y")
+region = Rect2(376, 84, 94, 84)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tb85u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm5xu")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4geqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erjsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivmoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8531")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipi21")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
+}]
 
 [node name="Hue" type="CharacterBody2D" groups=["Hue"]]
 collision_mask = 3
@@ -30,7 +86,6 @@ shape = SubResource("CircleShape2D_5guqr")
 modulate = Color(0.439216, 0.439216, 0.439216, 0.72549)
 top_level = true
 position = Vector2(0, -40)
-scale = Vector2(0.64, 0.64)
 texture = ExtResource("2_danpb")
 offset = Vector2(1, 0)
 hframes = 9
@@ -38,17 +93,30 @@ hframes = 9
 [node name="fill" type="Sprite2D" parent="."]
 top_level = true
 position = Vector2(0, -40)
-scale = Vector2(0.64, 0.64)
-texture = ExtResource("2_danpb")
-offset = Vector2(1, 0)
-hframes = 9
+scale = Vector2(0.285, 0.285)
+texture = ExtResource("3_57imn")
+hframes = 3
+vframes = 2
 script = ExtResource("3_kxjvi")
 
-[node name="border" type="Sprite2D" parent="."]
+[node name="_border" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.513726)
 top_level = true
 position = Vector2(0, -40)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("4_v5ypd")
+texture = ExtResource("4_xja6y")
+hframes = 5
+vframes = 2
+
+[node name="border" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.513726)
+top_level = true
+position = Vector2(0, -40)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_tb85u")
+animation = &"Move"
+frame_progress = 0.118484
 
 [node name="RC_Right" type="RayCast2D" parent="."]
 position = Vector2(0, -40)

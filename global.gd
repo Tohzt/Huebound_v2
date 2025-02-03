@@ -8,6 +8,7 @@ const REFS ={
 	"Huey": preload("res://Huey/hue.tscn"),
 	"Cell": preload("res://Cell/cell.tscn"),
 	"Item": preload("res://Item/item.tscn"),
+	"UI_Cell": preload("res://Main Menu/UI_Cell/ui_cell.tscn")
 	}
 	
 var screen_width = DisplayServer.window_get_size().x
@@ -15,7 +16,8 @@ var screen_height = DisplayServer.window_get_size().y
 var view_width = ProjectSettings.get_setting("display/window/size/viewport_width")
 var view_height = ProjectSettings.get_setting("display/window/size/viewport_height")
 
-var palette_color: Array[Color] = [Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW] 
+var palette_color: Array[Color] = [Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.WEB_PURPLE] 
+var palette_grey: Array[Color] = [Color("#4c4c4c"),Color("#848484"),Color("#dddddd"),Color("#bcbcbc")]
 var active_color: Array[Color] = [] 
 
 var height = 0

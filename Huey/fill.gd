@@ -16,7 +16,7 @@ func _ready():
 func _process(delta):
 	var target_position = get_parent().position
 	target_position.y = get_parent().position.y-40
-	var spd = 10
+	var spd = 20
 	global_position = lerp(global_position, target_position, delta*spd)
 	$"../border".global_position.x = get_parent().position.x
 	$"../border".global_position.y = get_parent().position.y-40
@@ -39,7 +39,7 @@ func animate(delta):
 			if animation_timer >= 1:
 				animation_timer = 0
 				frame += 1
-				if frame >= 8:
+				if frame >= 5:
 					frame_sequence = 1
 		
 		1:  # Color change pause
