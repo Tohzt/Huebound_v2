@@ -6,6 +6,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fb0tl"]
 shader = ExtResource("1_66bir")
+shader_parameter/weighted = true
+shader_parameter/brightness = 0.2
+shader_parameter/contrast = 1.2
 
 [node name="UI_Cell" type="Sprite2D" groups=["UI_Cells"]]
 material = SubResource("ShaderMaterial_fb0tl")

@@ -92,7 +92,7 @@ func set_active_color(colors: Array[Color]) -> void:
 	Global.active_color.clear()
 	Global.active_color = colors
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !alive: return
 	if velocity.length() > 100:
 		var v_len_max = 500
@@ -106,11 +106,27 @@ func _process(delta: float) -> void:
 	border.z_index = int(hue_grid_pos.y+1)
 	#label.text = "[" + str(border.z_index) + "]"
 
+var death_splat = false
 func _physics_process(delta):
 	if !alive: 
-		position.y = lerp(position.y, death_pos.y + 60, delta*10)
-		camera.zoom = lerp(camera.zoom, Vector2(2,2), delta*5)
-		camera.position = lerp(camera.position, position, delta*10)
+		var _lr = Input.get_axis("ui_left", "ui_right")
+		velocity.x = _lr*SPEED/2
+		velocity += get_gravity() * delta
+		if !death_splat: move_and_slide()
+		
+		if is_on_floor():
+			if !death_splat:
+				death_splat = true
+				fill.hide()
+				backfill.hide()
+				border.speed_scale = 1.0
+				border.scale = Vector2(2.0,2.0)
+				border.modulate = cur_color
+				border.play("Pop Inner")
+			
+		#position.y = lerp(position.y, death_pos.y + 60, delta*10)
+		#camera.zoom = lerp(camera.zoom, Vector2(2,2), delta*5)
+		camera.position.y = lerp(camera.position.y, position.y, delta*10)
 		
 		return
 	_update_grid_pos()
@@ -307,5 +323,14 @@ func death_to_heuy():
 	fill.z_index = 4000
 	border.z_index = 4000
 	Engine.time_scale = 0.05
-	await get_tree().create_timer(3).timeout
-	get_tree().change_scene_to_file(Global.REFS.Win_Lose)
+	await get_tree().create_timer(.1).timeout
+	#get_tree().change_scene_to_file(Global.REFS.Win_Lose)
+	Global.active_color.clear()
+	var cells = get_tree().get_nodes_in_group("Cell")
+	for cell: CellClass in cells:
+		cell.modulate = cell.color.darkened(0.5)
+		cell.cell_solid = false
+		cell.update_solid()
+	border.play("Pop")
+	border.scale = Vector2(0.75, 0.75)
+	Engine.time_scale = 1.0
