@@ -25,6 +25,7 @@ var jump_max: int = 2
 var cur_color: Color
 var climbing: bool = true
 var alive = true
+var dying = false
 var color_swapped: bool = true
 var death_pos: Vector2
 
@@ -112,17 +113,27 @@ func _physics_process(delta):
 		var _lr = Input.get_axis("ui_left", "ui_right")
 		velocity.x = _lr*SPEED/2
 		velocity += get_gravity() * delta
-		if !death_splat: move_and_slide()
+		if !death_splat: 
+			move_and_slide()
+		if dying:
+			border.global_position.x = position.x
+			border.global_position.y = position.y-40
+
 		
 		if is_on_floor():
 			if !death_splat:
 				death_splat = true
+				border.global_position = fill.global_position
 				fill.hide()
 				backfill.hide()
 				border.speed_scale = 1.0
 				border.scale = Vector2(2.0,2.0)
 				border.modulate = cur_color
 				border.play("Pop Inner")
+				
+				await get_tree().create_timer(1.0).timeout
+				Global.active_color.clear()
+				get_tree().change_scene_to_file(Global.REFS.Start)
 			
 		#position.y = lerp(position.y, death_pos.y + 60, delta*10)
 		#camera.zoom = lerp(camera.zoom, Vector2(2,2), delta*5)
@@ -318,13 +329,16 @@ func death_to_heuy():
 		if Global.new_record:
 			Global.new_record = true
 	alive = false
+	dying = true
 	
 	backfill.z_index = 4000
 	fill.z_index = 4000
 	border.z_index = 4000
-	Engine.time_scale = 0.05
-	await get_tree().create_timer(.1).timeout
+	#Engine.time_scale = 0.05
+	#await get_tree().create_timer(.1).timeout
 	#get_tree().change_scene_to_file(Global.REFS.Win_Lose)
+	var items = get_tree().get_nodes_in_group("Item")
+	for item in items: item.queue_free()
 	Global.active_color.clear()
 	var cells = get_tree().get_nodes_in_group("Cell")
 	for cell: CellClass in cells:
@@ -332,5 +346,6 @@ func death_to_heuy():
 		cell.cell_solid = false
 		cell.update_solid()
 	border.play("Pop")
+	dying = false
 	border.scale = Vector2(0.75, 0.75)
 	Engine.time_scale = 1.0

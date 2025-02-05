@@ -20,6 +20,7 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 	if !cell_solid: return
+	Global.active_color.clear()
 	match button_index:
 		1:
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
