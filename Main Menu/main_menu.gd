@@ -44,8 +44,8 @@ func _process(_delta):
 				cell.cell_solid = false
 				var mouse_in = mouse_pos.x > cell.origin.x and\
 								mouse_pos.x < cell.origin.x + cell.width and\
-								mouse_pos.y > cell.origin.y and\
-								mouse_pos.y < cell.origin.y + cell.height
+								mouse_pos.y > cell.origin.y - 60 and\
+								mouse_pos.y < cell.origin.y + cell.height - 60
 				if mouse_in: 
 					cell.cell_solid = true
 					#Global.active_color.clear()

@@ -8,6 +8,8 @@ extends Node2D
 var pos_in = position.y
 var pos_out = position.y + 60
 @onready var pos = position.y
+var rumble_timer = 0.0
+var is_rumbling = false
 
 var hue: HueClass
 var color: Color
@@ -15,6 +17,7 @@ var color_shaded: Color
 var cell_solid = false
 var cell_grid_pos: Vector2
 var slide_speed = randf_range(5.0, 15.0)
+@onready var shader_material = block_sprite.material
 
 
 func _ready():
@@ -29,6 +32,7 @@ func _ready():
 	var cell_y_pos = abs(floor((global_position.y + 60) / Settings.cell_size)+1)
 	cell_grid_pos = Vector2(cell_x_pos, cell_y_pos)
 	update_solid()
+	# Default greyout effect
 
 
 func _process(delta):
@@ -44,7 +48,30 @@ func _process(delta):
 	
 	#label.text = "(" + str(cell_grid_pos.x)+","+str(cell_grid_pos.y) +")"
 	#label.text = "(" + str(block_sprite.z_index) +")"
-	position.y = lerp(position.y, pos, delta * slide_speed)
+	
+	# Add rumble effect and increase greyout when Hue is falling to death
+	if !hue.alive and !hue.death_splat:
+		is_rumbling = true
+		rumble_timer += delta * 10
+		if rumble_timer >= 1.0:
+			rumble_timer = 0.0
+			pos = pos_in if randf() > 0.75 else pos_in + (pos_out - pos_in) / 2
+			
+			# Gradually increase greyout effect (0.0 to 1.0)
+			var current_greyout = shader_material.get_shader_parameter("greyout")
+			shader_material.set_shader_parameter("greyout", lerp(current_greyout, 1.0, delta/20))
+	else:
+		# Only fade back to color if Hue is alive
+		if hue.alive:
+			var current_greyout = shader_material.get_shader_parameter("greyout")
+			shader_material.set_shader_parameter("greyout", lerp(current_greyout, 0.0, delta/200))
+		is_rumbling = false
+		if !cell_solid:
+			pos = pos_in
+	
+	# Faster lerp speed during rumble
+	var current_speed = slide_speed * (0.5 if is_rumbling else 1.0)
+	position.y = lerp(position.y, pos, delta * current_speed)
 	
 	cell.set_collision_layer_value(1, cell_solid)
 

@@ -7,7 +7,7 @@
 [node name="UI_Cell_4x1" type="Sprite2D" groups=["UI_Cells"]]
 texture = ExtResource("1_1hp8d")
 centered = false
-offset = Vector2(0, -60)
+offset = Vector2(0, -160)
 script = ExtResource("2_j57a7")
 
 [node name="Label" type="Label" parent="."]
@@ -16,10 +16,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -71.19
-offset_right = 20.0
-offset_bottom = 16.81
+offset_left = -136.0
+offset_top = -190.0
+offset_right = 136.0
+offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)

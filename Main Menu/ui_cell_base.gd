@@ -11,8 +11,8 @@ var pos = position.y
 var color: Color
 var color_shaded: Color
 var cell_solid = false
-var slide_speed = randf_range(5.0, 15.0)
-var push_dist = 30
+var slide_speed = randf_range(5.0, 25.0)
+var push_dist = 60
 
 
 func _ready():

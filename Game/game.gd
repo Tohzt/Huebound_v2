@@ -26,7 +26,7 @@ func _build_grid():
 			var y_pos = -y*Settings.cell_size - (Settings.cell_size*2.5)
 			cell.position = Vector2(x_pos, y_pos)
 			get_node("Cell Container").add_child(cell)
-			if y > 1:
+			if y > 10:
 				_add_item(cell)
 			
 	Global.add_chunk = false

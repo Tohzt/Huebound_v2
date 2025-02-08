@@ -4,8 +4,12 @@ shader_type canvas_item;
 uniform bool weighted = true;    // Determines whether to use normal or weighted averages
 uniform float brightness = 0.2;  // Controls overall brightness (-1.0 to 1.0)
 uniform float contrast = 1.2;    // Controls contrast (0.0 upwards, 1.0 is neutral)
+uniform float greyout = 0.0;    // Controls greyscale blend (0.0 to 1.0)
 
 void fragment() {
+    // Get original color
+    vec4 original = COLOR;
+    
     // Calculate greyscale value using either simple or weighted average
     float grey = weighted ? 
         (0.299 * COLOR.r + 0.587 * COLOR.g + 0.114 * COLOR.b) :
@@ -20,5 +24,6 @@ void fragment() {
     // Clamp the final value to valid range
     grey = clamp(grey, 0.0, 1.0);
     
-    COLOR.rgb = vec3(grey);
+    // Lerp between original and greyscale based on greyout value
+    COLOR.rgb = mix(original.rgb, vec3(grey), greyout);
 }

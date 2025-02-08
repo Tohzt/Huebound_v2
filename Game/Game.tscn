@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c1lhapr6y2nxb" path="res://Game/Border/Border.tscn" id="9_tmpff"]
 [ext_resource type="Texture2D" uid="uid://04ptbalpgfqt" path="res://Item/perks.png" id="10_ktlu3"]
 [ext_resource type="Texture2D" uid="uid://e5vn5j50b7ct" path="res://UI/Button_Theme_64.png" id="10_ocdff"]
-[ext_resource type="Texture2D" uid="uid://c8n57ool0t87i" path="res://Cell/src/new_cel_4x1.png" id="13_m16f6"]
+[ext_resource type="PackedScene" uid="uid://chbo41y7mm2a4" path="res://UI/ui_footer.tscn" id="13_ygidy"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5stji"]
 texture = ExtResource("10_ocdff")
@@ -166,20 +166,7 @@ position = Vector2(351, -171)
 position = Vector2(0, -180)
 scale = Vector2(12, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="Cell Container"]
-position = Vector2(89, 0)
-texture = ExtResource("13_m16f6")
-offset = Vector2(240, -90)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Cell Container"]
-position = Vector2(569, 0)
-texture = ExtResource("13_m16f6")
-offset = Vector2(240, -90)
-
-[node name="Sprite2D3" type="Sprite2D" parent="Cell Container"]
-position = Vector2(-391, 0)
-texture = ExtResource("13_m16f6")
-offset = Vector2(240, -90)
+[node name="UI_Footer" parent="Cell Container" instance=ExtResource("13_ygidy")]
 
 [node name="Item Container" type="Node" parent="." groups=["Item Container"]]
 

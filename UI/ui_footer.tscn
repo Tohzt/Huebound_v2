@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://chbo41y7mm2a4"]
+
+[ext_resource type="Texture2D" uid="uid://uujg7g2fd4me" path="res://Cell/src/new_cell.png" id="1_5xxig"]
+[ext_resource type="Texture2D" uid="uid://c8n57ool0t87i" path="res://Cell/src/new_cel_4x1.png" id="1_aijrs"]
+
+[node name="UI_Footer" type="Node2D"]
+
+[node name="Left" type="Sprite2D" parent="."]
+texture = ExtResource("1_5xxig")
+offset = Vector2(60, -90)
+
+[node name="Middle" type="Sprite2D" parent="."]
+position = Vector2(120, 0)
+texture = ExtResource("1_aijrs")
+offset = Vector2(240, -90)
+
+[node name="Right" type="Sprite2D" parent="."]
+position = Vector2(600, 0)
+texture = ExtResource("1_5xxig")
+offset = Vector2(60, -90)

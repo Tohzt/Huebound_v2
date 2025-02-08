@@ -1,18 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1lhapr6y2nxb"]
-
-[ext_resource type="Texture2D" uid="uid://biwug17ksndpp" path="res://Game/Border/edge.png" id="1_mygxc"]
+[gd_scene load_steps=2 format=3 uid="uid://c1lhapr6y2nxb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0gv7"]
 size = Vector2(60, 30)
 
 [node name="Border" type="Node2D"]
-
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0, 0, 0, 1)
-offset_right = 60.0
-offset_bottom = 60.0
-texture = ExtResource("1_mygxc")
-stretch_mode = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(30, 45)

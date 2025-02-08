@@ -9,12 +9,13 @@ shader = ExtResource("1_66bir")
 shader_parameter/weighted = true
 shader_parameter/brightness = 0.2
 shader_parameter/contrast = 1.2
+shader_parameter/greyout = 1.0
 
 [node name="UI_Cell" type="Sprite2D" groups=["UI_Cells"]]
 material = SubResource("ShaderMaterial_fb0tl")
 texture = ExtResource("1_11isq")
 centered = false
-offset = Vector2(0, -60)
+offset = Vector2(0, -160)
 script = ExtResource("2_xh3pq")
 
 [node name="Label" type="Label" parent="."]

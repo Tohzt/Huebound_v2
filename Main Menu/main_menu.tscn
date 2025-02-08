@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfpfr4n2qwii4"]
+[gd_scene load_steps=9 format=3 uid="uid://cfpfr4n2qwii4"]
 
 [ext_resource type="Script" path="res://Main Menu/main_menu.gd" id="1_pb3t0"]
 [ext_resource type="Script" path="res://Main Menu/center_container.gd" id="2_a4c85"]
 [ext_resource type="Script" path="res://Main Menu/settings_options.gd" id="3_5may6"]
 [ext_resource type="PackedScene" uid="uid://iffpd13twfxi" path="res://Main Menu/cell_select.tscn" id="4_vui36"]
 [ext_resource type="PackedScene" uid="uid://ggbkdw232kmx" path="res://Main Menu/UI_Cell/ui_cell.tscn" id="5_7awsc"]
+[ext_resource type="PackedScene" uid="uid://chbo41y7mm2a4" path="res://UI/ui_footer.tscn" id="5_yh8gw"]
 [ext_resource type="PackedScene" uid="uid://dyo1yibycig5f" path="res://Main Menu/UI_Cell_4x1/ui_cell_4x1.tscn" id="6_r628i"]
 [ext_resource type="PackedScene" uid="uid://d0plu10k271hj" path="res://Main Menu/UI_Cell_4x4/ui_cell4x2.tscn" id="7_l7mgk"]
 
@@ -21,19 +22,83 @@ script = ExtResource("1_pb3t0")
 
 [node name="UI Cells" type="Node2D" parent="."]
 
-[node name="UI_Cell68" parent="UI Cells" instance=ExtResource("7_l7mgk")]
+[node name="Fill Cells" type="Node2D" parent="UI Cells"]
+
+[node name="UI_Cell2" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 120)
+
+[node name="UI_Cell3" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 120)
+
+[node name="UI_Cell4" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 120)
+
+[node name="UI_Cell5" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 120)
+
+[node name="UI_Cell6" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 240)
+
+[node name="UI_Cell7" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 240)
+
+[node name="UI_Cell8" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 240)
+
+[node name="UI_Cell9" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 240)
+
+[node name="UI_Cell10" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 480)
+
+[node name="UI_Cell11" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 480)
+
+[node name="UI_Cell12" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 480)
+
+[node name="UI_Cell13" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 480)
+
+[node name="UI_Cell14" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 720)
+
+[node name="UI_Cell15" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 720)
+
+[node name="UI_Cell16" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 720)
+
+[node name="UI_Cell17" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 720)
+
+[node name="UI_Cell18" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 960)
+
+[node name="UI_Cell19" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 960)
+
+[node name="UI_Cell20" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 960)
+
+[node name="UI_Cell21" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 960)
+
+[node name="Button Cells" type="Node2D" parent="UI Cells"]
+
+[node name="UI_Cell68" parent="UI Cells/Button Cells" instance=ExtResource("7_l7mgk")]
 position = Vector2(120, 120)
 button_index = 1
 
-[node name="UI_Cell67" parent="UI Cells" instance=ExtResource("6_r628i")]
+[node name="UI_Cell67" parent="UI Cells/Button Cells" instance=ExtResource("6_r628i")]
 position = Vector2(120, 480)
 button_index = 2
 
-[node name="UI_Cell73" parent="UI Cells" instance=ExtResource("6_r628i")]
+[node name="UI_Cell73" parent="UI Cells/Button Cells" instance=ExtResource("6_r628i")]
 position = Vector2(120, 720)
 button_index = 3
 
-[node name="UI_Cell74" parent="UI Cells" instance=ExtResource("6_r628i")]
+[node name="UI_Cell74" parent="UI Cells/Button Cells" instance=ExtResource("6_r628i")]
 position = Vector2(120, 960)
 button_index = 4
 
@@ -156,23 +221,8 @@ position = Vector2(480, 1080)
 [node name="UI_Cell60" parent="UI Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(600, 1080)
 
-[node name="UI_Cell61" parent="UI Cells" instance=ExtResource("5_7awsc")]
-position = Vector2(0, 1200)
-
-[node name="UI_Cell62" parent="UI Cells" instance=ExtResource("5_7awsc")]
-position = Vector2(120, 1200)
-
-[node name="UI_Cell63" parent="UI Cells" instance=ExtResource("5_7awsc")]
-position = Vector2(240, 1200)
-
-[node name="UI_Cell64" parent="UI Cells" instance=ExtResource("5_7awsc")]
-position = Vector2(360, 1200)
-
-[node name="UI_Cell65" parent="UI Cells" instance=ExtResource("5_7awsc")]
-position = Vector2(480, 1200)
-
-[node name="UI_Cell66" parent="UI Cells" instance=ExtResource("5_7awsc")]
-position = Vector2(600, 1200)
+[node name="UI_Footer" parent="." instance=ExtResource("5_yh8gw")]
+position = Vector2(0, 1280)
 
 [node name="Container" type="CanvasLayer" parent="."]
 visible = false

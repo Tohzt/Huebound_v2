@@ -1,7 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cy22vxfxtqr2j"]
+[gd_scene load_steps=6 format=3 uid="uid://cy22vxfxtqr2j"]
 
 [ext_resource type="Script" path="res://Cell/cell.gd" id="1_172ab"]
+[ext_resource type="Shader" path="res://Main Menu/UI_Cell/ui_cell.gdshader" id="2_1r3x4"]
 [ext_resource type="Texture2D" uid="uid://uujg7g2fd4me" path="res://Cell/src/new_cell.png" id="2_ffhj4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o16cy"]
+shader = ExtResource("2_1r3x4")
+shader_parameter/weighted = true
+shader_parameter/brightness = 0.2
+shader_parameter/contrast = 1.2
+shader_parameter/greyout = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vyyt"]
 size = Vector2(120, 120)
@@ -12,6 +20,7 @@ z_as_relative = false
 script = ExtResource("1_172ab")
 
 [node name="BlockSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_o16cy")
 position = Vector2(60, 30)
 texture = ExtResource("2_ffhj4")
 
