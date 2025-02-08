@@ -14,13 +14,13 @@ HueBound ToDo
 - UI with Game Assets
 - Death Anim
   X - (didn't like) - Slow down time as block pushes Hue forward and pops. 
-  - Cells lose color
-  - Cells rumble on fall 
+  + Cells lose color
+  + Cells rumble on fall 
   - Recycle chunks downwards. 
   + Hue inner falls uncontrollably while speed ramps back up
   + Hue inner splat animation on ground row
 
-- Local high score
++ Local high score
 - LB position on win_lose screen
 - Tell players what the powerups do
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://y3q547fkfi4g"]
+[gd_scene load_steps=16 format=3 uid="uid://y3q547fkfi4g"]
 
 [ext_resource type="Script" path="res://Game/game.gd" id="1_30xni"]
 [ext_resource type="Script" path="res://Game/Input/input_manager.gd" id="2_cylo2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c5q5xb41m6hx5" path="res://Game/Input/Touch_Pos.png" id="4_fdw4r"]
 [ext_resource type="Texture2D" uid="uid://bja18oj4hvj5j" path="res://Cell/src/edge.png" id="5_xm3j0"]
 [ext_resource type="PackedScene" uid="uid://c1lhapr6y2nxb" path="res://Game/Border/Border.tscn" id="9_tmpff"]
+[ext_resource type="FontFile" uid="uid://cv7ta3brc7tgo" path="res://UI/OpenDyslexicAlta-Bold.otf" id="10_70sfb"]
 [ext_resource type="Texture2D" uid="uid://04ptbalpgfqt" path="res://Item/perks.png" id="10_ktlu3"]
 [ext_resource type="Texture2D" uid="uid://e5vn5j50b7ct" path="res://UI/Button_Theme_64.png" id="10_ocdff"]
 [ext_resource type="PackedScene" uid="uid://chbo41y7mm2a4" path="res://UI/ui_footer.tscn" id="13_ygidy"]
@@ -85,7 +86,7 @@ layout_mode = 2
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 700.0
-offset_bottom = 1239.0
+offset_bottom = 1272.0
 script = ExtResource("4_do4el")
 
 [node name="Label_Height_Max" type="Label" parent="CanvasLayer/Control/Bottom Row"]
@@ -93,15 +94,45 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("10_70sfb")
 theme_override_font_sizes/font_size = 32
 text = "All Time: "
 
-[node name="Label_Height" type="Label" parent="CanvasLayer/Control/Bottom Row"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Bottom Row"]
+custom_minimum_size = Vector2(237.915, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
+theme_override_constants/separation = -20
+
+[node name="Label_Height" type="Label" parent="CanvasLayer/Control/Bottom Row/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("10_70sfb")
 theme_override_font_sizes/font_size = 32
 text = "Current: "
+
+[node name="Label_Best" type="Label" parent="CanvasLayer/Control/Bottom Row/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("10_70sfb")
+theme_override_font_sizes/font_size = 32
+text = "Best: "
 
 [node name="BTN_Exit" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -130,12 +161,12 @@ grow_vertical = 0
 size_flags_horizontal = 4
 
 [node name="PowerContainer" type="Sprite2D" parent="CanvasLayer/Control/Control"]
-position = Vector2(0, -71.85)
+position = Vector2(1, -70)
 scale = Vector2(1.3125, 1.3125)
 texture = ExtResource("10_ocdff")
 
 [node name="Current_Item" type="Sprite2D" parent="CanvasLayer/Control/Control"]
-position = Vector2(0, -71.17)
+position = Vector2(1, -69.32)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("10_ktlu3")
 hframes = 4
@@ -147,12 +178,20 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -43.0
-offset_top = -36.825
-offset_right = 43.0
-offset_bottom = -5.825
+offset_left = -52.0
+offset_top = -38.0
+offset_right = 52.0
+offset_bottom = 0.999954
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("10_70sfb")
 theme_override_font_sizes/font_size = 22
 text = "size test"
 horizontal_alignment = 1
@@ -167,6 +206,9 @@ position = Vector2(0, -180)
 scale = Vector2(12, 1)
 
 [node name="UI_Footer" parent="Cell Container" instance=ExtResource("13_ygidy")]
+
+[node name="UI_Footer2" parent="Cell Container" instance=ExtResource("13_ygidy")]
+position = Vector2(0, 1280)
 
 [node name="Item Container" type="Node" parent="." groups=["Item Container"]]
 

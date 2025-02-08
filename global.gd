@@ -22,6 +22,7 @@ var active_color: Array[Color] = []
 
 var height = 0
 var height_max = 20
+var personal_best = 0
 var top_10 = INF
 
 var add_chunk = false

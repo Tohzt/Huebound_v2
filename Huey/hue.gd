@@ -204,6 +204,8 @@ func _swap_colors():
 func _climbing():
 	if climbing: 
 		Global.height = int(abs(global_position.y) / Settings.cell_size)
+		Global.personal_best = max(Global.personal_best, Global.height)
+			
 		if Global.height > Global.top_10:
 			Global.height_max = Global.height
 			Global.new_record = true
@@ -334,7 +336,7 @@ func death_to_heuy():
 	backfill.z_index = 4000
 	fill.z_index = 4000
 	border.z_index = 4000
-	#Engine.time_scale = 0.05
+	#Engine.time_scale = 0.25
 	#await get_tree().create_timer(.1).timeout
 	#get_tree().change_scene_to_file(Global.REFS.Win_Lose)
 	var items = get_tree().get_nodes_in_group("Item")
@@ -348,4 +350,4 @@ func death_to_heuy():
 	border.play("Pop")
 	dying = false
 	border.scale = Vector2(0.75, 0.75)
-	Engine.time_scale = 1.0
+	#Engine.time_scale = 1.0
