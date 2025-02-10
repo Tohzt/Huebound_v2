@@ -1,6 +1,5 @@
 extends UI_CELL_CLASS
-
-@export var button_index: int
+@onready var Master = get_tree().root.get_node("Main Menu")
 
 signal start_pressed
 
@@ -8,34 +7,22 @@ func _ready():
 	width = 120*4
 	height = 120*2
 	super._ready()
-	if button_index:
-		var pos_temp = pos_in
-		pos_in = pos_out
-		pos_out += (pos_temp - pos_out)/5
-		#pos_in = pos_in + push_dist*0.5
-		#pos_out = pos_out - push_dist*0.25
-		pass
-		#pos_in = pos_out
-		#pos_out += push_dist
-		#pos += push_dist
-		
-	color = Global.palette_color[button_index-1]
+	var pos_temp = pos_in
+	pos_in = pos_out
+	pos_out += (pos_temp - pos_out)/5
+	var rng = randi_range(1,3)
+	color = Global.color_palette[rng]
 	color_shaded = color
 	modulate = color_shaded.darkened(0.5)
-	
-	# Connect to the START button's signal
-	var start_button = get_tree().get_first_node_in_group("start_button")
-	if start_button:
-		start_button.start_pressed.connect(_on_start_pressed)
-
-func _on_start_pressed():
-	hide()
 
 func _process(delta):
 	super._process(delta)
 	if !cell_solid: return
+	
 	Global.active_color.clear()
-	if button_index == 1 and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if index == "Start" and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and !TransitionHandler.is_transitioning:
 		start_pressed.emit()
+		TransitionHandler.is_transitioning = true
 		await get_tree().create_timer(2.5).timeout
-		get_tree().change_scene_to_file(Global.REFS.Game)
+		#get_tree().change_scene_to_file(Global.REFS.Game)
+		TransitionHandler.fade_out(get_tree().current_scene, Global.REFS.Game, 0.1, Color.BLACK)

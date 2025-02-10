@@ -29,7 +29,7 @@ func _ready():
 	pos_in = pos
 	pos_out = pos + 60
 	hue = get_tree().get_first_node_in_group("Hue")
-	color = Global.palette_color.pick_random()
+	color = Global.color_palette.pick_random()
 	color_shaded = color
 	block_sprite.modulate = color_shaded.darkened(0.5)
 	var cell_x_pos = floor(global_position.x / Settings.cell_size)

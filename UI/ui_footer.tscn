@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c8n57ool0t87i" path="res://Cell/src/new_cel_4x1.png" id="1_aijrs"]
 
 [node name="UI_Footer" type="Node2D"]
+modulate = Color(0.554729, 0.562252, 0.568668, 1)
 
 [node name="Left" type="Sprite2D" parent="."]
 texture = ExtResource("1_5xxig")

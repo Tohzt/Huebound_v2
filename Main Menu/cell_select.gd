@@ -18,4 +18,4 @@ func _ready():
 	texture_rect_4.modulate = col_4
 
 func _on_pressed():
-	Global.palette_color = [col_1, col_2, col_3, col_4]
+	Global.color_palette = [col_1, col_2, col_3, col_4]

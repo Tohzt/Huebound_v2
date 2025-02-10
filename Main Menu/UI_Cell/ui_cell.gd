@@ -13,7 +13,7 @@ func _ready():
 	
 	time_offset = randf() * PI * 2
 	
-	color = Global.palette_color.pick_random()
+	color = Global.color_palette.pick_random()
 	color_shaded = color
 	modulate = color_shaded.darkened(0.5)
 	
@@ -42,7 +42,7 @@ func _process(delta):
 			# Handle color changes
 			color_change_timer += delta
 			if color_change_timer >= COLOR_CHANGE_INTERVAL:
-				color = Global.palette_color.pick_random()
+				color = Global.color_palette.pick_random()
 				color_shaded = color
 				modulate = color_shaded.darkened(0.5)
 				color_change_timer = 0.0

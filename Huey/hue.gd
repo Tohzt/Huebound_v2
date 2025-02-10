@@ -183,7 +183,7 @@ func _swap_colors():
 		var cells = get_tree().get_nodes_in_group("Cell")
 		for cell: CellClass in cells:
 			if shuffle_grid:
-				cell.color = Global.palette_color.pick_random()
+				cell.color = Global.color_palette.pick_random()
 				cell.color_shaded = cell.color
 				cell.block_sprite.modulate = cell.color
 				if !cell.cell_solid:
@@ -192,7 +192,7 @@ func _swap_colors():
 			elif cell.cell_grid_pos == hue_grid_pos:
 				cur_color = cell.color  # Immediately update the active color
 				if random_swap :
-					cur_color = Global.palette_color.pick_random()
+					cur_color = Global.color_palette.pick_random()
 				else:
 					cell.color = _col
 					cell.color_shaded = _col

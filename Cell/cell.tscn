@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cy22vxfxtqr2j"]
+[gd_scene load_steps=7 format=3 uid="uid://cy22vxfxtqr2j"]
 
 [ext_resource type="Script" path="res://Cell/cell.gd" id="1_172ab"]
 [ext_resource type="Texture2D" uid="uid://uujg7g2fd4me" path="res://Cell/src/new_cell.png" id="2_ffhj4"]
 [ext_resource type="Shader" path="res://Shaders/greyscale.gdshader" id="2_rhl8s"]
-[ext_resource type="Shader" path="res://Shaders/test.gdshader" id="3_fbhxb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kcdj4"]
 shader = ExtResource("2_rhl8s")
@@ -11,9 +10,6 @@ shader_parameter/weighted = true
 shader_parameter/brightness = 0.2
 shader_parameter/contrast = 1.2
 shader_parameter/greyout = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vmqve"]
-shader = ExtResource("3_fbhxb")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vyyt"]
 size = Vector2(120, 120)
@@ -26,7 +22,6 @@ top_level = true
 z_as_relative = false
 script = ExtResource("1_172ab")
 sh_greyscale = SubResource("ShaderMaterial_kcdj4")
-sh_highlight = SubResource("ShaderMaterial_vmqve")
 
 [node name="BlockSprite" type="Sprite2D" parent="."]
 position = Vector2(60, 30)

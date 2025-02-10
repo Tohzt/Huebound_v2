@@ -1,6 +1,8 @@
 class_name UI_CELL_CLASS
 extends Node2D
 
+@export var index: String = ""
+
 @onready var origin = position
 var width = 120
 var height = 120

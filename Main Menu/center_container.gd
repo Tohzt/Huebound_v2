@@ -11,10 +11,10 @@ extends CanvasLayer
 func _ready():
 	#menu_options.show()
 	settings_options.hide()
-	#btn_start.modulate = Global.palette_color.pick_random()
-	#btn_settings.modulate = Global.palette_color.pick_random()
-	#btn_leaderboard.modulate = Global.palette_color.pick_random()
-	#btn_exit.modulate = Global.palette_color.pick_random()
+	#btn_start.modulate = Global.color_palette.pick_random()
+	#btn_settings.modulate = Global.color_palette.pick_random()
+	#btn_leaderboard.modulate = Global.color_palette.pick_random()
+	#btn_exit.modulate = Global.color_palette.pick_random()
 
 func _on_btn_settings_pressed():
 	pass

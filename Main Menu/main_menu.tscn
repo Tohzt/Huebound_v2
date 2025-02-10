@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfpfr4n2qwii4"]
+[gd_scene load_steps=10 format=3 uid="uid://cfpfr4n2qwii4"]
 
 [ext_resource type="Script" path="res://Main Menu/main_menu.gd" id="1_pb3t0"]
 [ext_resource type="Script" path="res://Main Menu/center_container.gd" id="2_a4c85"]
+[ext_resource type="Script" path="res://Main Menu/page_container.gd" id="2_pjmyq"]
 [ext_resource type="Script" path="res://Main Menu/settings_options.gd" id="3_5may6"]
 [ext_resource type="PackedScene" uid="uid://iffpd13twfxi" path="res://Main Menu/cell_select.tscn" id="4_vui36"]
 [ext_resource type="PackedScene" uid="uid://ggbkdw232kmx" path="res://Main Menu/UI_Cell/ui_cell.tscn" id="5_7awsc"]
@@ -20,206 +21,630 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_pb3t0")
 
-[node name="UI Cells" type="Node2D" parent="."]
+[node name="Page Container" type="Node2D" parent="."]
+script = ExtResource("2_pjmyq")
 
-[node name="Fill Cells" type="Node2D" parent="UI Cells"]
+[node name="UI_Page_01" type="Node2D" parent="Page Container"]
 
-[node name="UI_Cell2" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="Fill Cells" type="Node2D" parent="Page Container/UI_Page_01"]
+visible = false
+
+[node name="UI_Cell2" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(120, 120)
 
-[node name="UI_Cell3" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell3" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(240, 120)
 
-[node name="UI_Cell4" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell4" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(360, 120)
 
-[node name="UI_Cell5" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell5" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(480, 120)
 
-[node name="UI_Cell6" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell6" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(120, 240)
 
-[node name="UI_Cell7" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell7" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(240, 240)
 
-[node name="UI_Cell8" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell8" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(360, 240)
 
-[node name="UI_Cell9" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell9" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(480, 240)
 
-[node name="UI_Cell10" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell10" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(120, 480)
 
-[node name="UI_Cell11" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell11" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(240, 480)
 
-[node name="UI_Cell12" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell12" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(360, 480)
 
-[node name="UI_Cell13" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell13" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(480, 480)
 
-[node name="UI_Cell14" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell14" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(120, 720)
 
-[node name="UI_Cell15" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell15" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(240, 720)
 
-[node name="UI_Cell16" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell16" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(360, 720)
 
-[node name="UI_Cell17" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell17" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(480, 720)
 
-[node name="UI_Cell18" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell18" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(120, 960)
 
-[node name="UI_Cell19" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell19" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(240, 960)
 
-[node name="UI_Cell20" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell20" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(360, 960)
 
-[node name="UI_Cell21" parent="UI Cells/Fill Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell21" parent="Page Container/UI_Page_01/Fill Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(480, 960)
 
-[node name="Button Cells" type="Node2D" parent="UI Cells"]
+[node name="Cells" type="Node2D" parent="Page Container/UI_Page_01"]
 
-[node name="UI_Cell68" parent="UI Cells/Button Cells" instance=ExtResource("7_l7mgk")]
-position = Vector2(120, 120)
-button_index = 1
+[node name="UI_Cell" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 
-[node name="UI_Cell67" parent="UI Cells/Button Cells" instance=ExtResource("6_r628i")]
-position = Vector2(120, 480)
-button_index = 2
-
-[node name="UI_Cell73" parent="UI Cells/Button Cells" instance=ExtResource("6_r628i")]
-position = Vector2(120, 720)
-button_index = 3
-
-[node name="UI_Cell74" parent="UI Cells/Button Cells" instance=ExtResource("6_r628i")]
-position = Vector2(120, 960)
-button_index = 4
-
-[node name="UI_Cell" parent="UI Cells" instance=ExtResource("5_7awsc")]
-
-[node name="UI_Cell2" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell2" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(120, 0)
 
-[node name="UI_Cell3" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell3" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(240, 0)
 
-[node name="UI_Cell4" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell4" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(360, 0)
 
-[node name="UI_Cell5" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell5" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(480, 0)
 
-[node name="UI_Cell6" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell6" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(600, 0)
 
-[node name="UI_Cell7" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell7" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(0, 120)
 
-[node name="UI_Cell12" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell12" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(600, 120)
 
-[node name="UI_Cell13" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell13" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(0, 240)
 
-[node name="UI_Cell18" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell18" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(600, 240)
 
-[node name="UI_Cell19" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell19" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(0, 360)
 
-[node name="UI_Cell20" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell20" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(120, 360)
 
-[node name="UI_Cell21" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell21" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(240, 360)
 
-[node name="UI_Cell22" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell22" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(360, 360)
 
-[node name="UI_Cell23" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell23" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(480, 360)
 
-[node name="UI_Cell24" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell24" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(600, 360)
 
-[node name="UI_Cell25" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell25" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(0, 480)
 
-[node name="UI_Cell30" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell30" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(600, 480)
 
-[node name="UI_Cell31" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell31" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(0, 600)
 
-[node name="UI_Cell36" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell36" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(600, 600)
 
-[node name="UI_Cell37" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell37" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(0, 720)
 
-[node name="UI_Cell38" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell38" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(120, 600)
 
-[node name="UI_Cell39" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell39" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(240, 600)
 
-[node name="UI_Cell40" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell40" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(360, 600)
 
-[node name="UI_Cell41" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell41" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(480, 600)
 
-[node name="UI_Cell42" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell42" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(600, 720)
 
-[node name="UI_Cell43" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell43" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(0, 840)
 
-[node name="UI_Cell48" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell48" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(600, 840)
 
-[node name="UI_Cell49" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell49" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(0, 960)
 
-[node name="UI_Cell54" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell54" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(600, 960)
 
-[node name="UI_Cell55" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell55" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(0, 1080)
 
-[node name="UI_Cell56" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell56" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(120, 840)
 
-[node name="UI_Cell57" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell57" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(240, 840)
 
-[node name="UI_Cell58" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell58" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(360, 840)
 
-[node name="UI_Cell59" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell59" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(480, 840)
 
-[node name="UI_Cell69" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell69" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(120, 1080)
 
-[node name="UI_Cell70" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell70" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(240, 1080)
 
-[node name="UI_Cell71" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell71" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(360, 1080)
 
-[node name="UI_Cell72" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell72" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(480, 1080)
 
-[node name="UI_Cell60" parent="UI Cells" instance=ExtResource("5_7awsc")]
+[node name="UI_Cell60" parent="Page Container/UI_Page_01/Cells" instance=ExtResource("5_7awsc")]
 position = Vector2(600, 1080)
+
+[node name="Button Cells" type="Node2D" parent="Page Container/UI_Page_01"]
+
+[node name="UI_Cell_Start" parent="Page Container/UI_Page_01/Button Cells" instance=ExtResource("7_l7mgk")]
+position = Vector2(120, 120)
+index = "Start"
+
+[node name="UI_Cell_Customize" parent="Page Container/UI_Page_01/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 480)
+index = "Customize"
+
+[node name="UI_Cell_Leaderboard" parent="Page Container/UI_Page_01/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 720)
+index = "Leaderboard"
+
+[node name="UI_Cell_Exit" parent="Page Container/UI_Page_01/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 960)
+index = "Exit"
+
+[node name="UI Page_02" type="Node2D" parent="Page Container"]
+position = Vector2(600, 0)
+
+[node name="Fill Cells" type="Node2D" parent="Page Container/UI Page_02"]
+visible = false
+
+[node name="UI_Cell2" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 120)
+
+[node name="UI_Cell3" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 120)
+
+[node name="UI_Cell4" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 120)
+
+[node name="UI_Cell5" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 120)
+
+[node name="UI_Cell10" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 360)
+
+[node name="UI_Cell11" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 360)
+
+[node name="UI_Cell12" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 360)
+
+[node name="UI_Cell13" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 360)
+
+[node name="UI_Cell14" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 600)
+
+[node name="UI_Cell15" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 600)
+
+[node name="UI_Cell16" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 600)
+
+[node name="UI_Cell17" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 600)
+
+[node name="UI_Cell18" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 840)
+
+[node name="UI_Cell19" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 840)
+
+[node name="UI_Cell20" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 840)
+
+[node name="UI_Cell21" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 840)
+
+[node name="UI_Cell69" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 1080)
+
+[node name="UI_Cell70" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 1080)
+
+[node name="UI_Cell71" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 1080)
+
+[node name="UI_Cell72" parent="Page Container/UI Page_02/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 1080)
+
+[node name="Cells" type="Node2D" parent="Page Container/UI Page_02"]
+
+[node name="UI_Cell" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+
+[node name="UI_Cell2" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 0)
+
+[node name="UI_Cell3" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 0)
+
+[node name="UI_Cell4" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 0)
+
+[node name="UI_Cell5" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 0)
+
+[node name="UI_Cell6" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 0)
+
+[node name="UI_Cell7" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 120)
+
+[node name="UI_Cell12" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 120)
+
+[node name="UI_Cell13" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 240)
+
+[node name="UI_Cell18" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 240)
+
+[node name="UI_Cell19" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 360)
+
+[node name="UI_Cell20" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 480)
+
+[node name="UI_Cell21" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 480)
+
+[node name="UI_Cell22" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 480)
+
+[node name="UI_Cell23" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 480)
+
+[node name="UI_Cell24" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 360)
+
+[node name="UI_Cell25" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 480)
+
+[node name="UI_Cell30" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 480)
+
+[node name="UI_Cell31" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 600)
+
+[node name="UI_Cell36" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 600)
+
+[node name="UI_Cell37" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 720)
+
+[node name="UI_Cell38" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 720)
+
+[node name="UI_Cell39" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 720)
+
+[node name="UI_Cell40" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 720)
+
+[node name="UI_Cell41" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 720)
+
+[node name="UI_Cell42" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 720)
+
+[node name="UI_Cell43" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 840)
+
+[node name="UI_Cell48" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 840)
+
+[node name="UI_Cell49" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 960)
+
+[node name="UI_Cell54" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 960)
+
+[node name="UI_Cell55" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 1080)
+
+[node name="UI_Cell56" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 960)
+
+[node name="UI_Cell57" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 960)
+
+[node name="UI_Cell58" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 960)
+
+[node name="UI_Cell59" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 960)
+
+[node name="UI_Cell60" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 1080)
+
+[node name="UI_Cell8" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 240)
+
+[node name="UI_Cell9" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 240)
+
+[node name="UI_Cell10" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 240)
+
+[node name="UI_Cell11" parent="Page Container/UI Page_02/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 240)
+
+[node name="Button Cells" type="Node2D" parent="Page Container/UI Page_02"]
+
+[node name="UI_Cell_Palette_1" parent="Page Container/UI Page_02/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 120)
+index = "Palette_1"
+
+[node name="UI_Cell_Palette_2" parent="Page Container/UI Page_02/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 360)
+index = "Palette_2"
+
+[node name="UI_Cell_Palette_3" parent="Page Container/UI Page_02/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 600)
+index = "Palette_3"
+
+[node name="UI_Cell_Palette_4" parent="Page Container/UI Page_02/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 840)
+index = "Palette_4"
+
+[node name="UI_Cell_Palette_5" parent="Page Container/UI Page_02/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 1080)
+index = "Palette_5"
+
+[node name="UI Page_03" type="Node2D" parent="Page Container"]
+position = Vector2(-720, 0)
+
+[node name="Fill Cells" type="Node2D" parent="Page Container/UI Page_03"]
+visible = false
+
+[node name="UI_Cell2" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 120)
+
+[node name="UI_Cell3" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 120)
+
+[node name="UI_Cell4" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 120)
+
+[node name="UI_Cell5" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 120)
+
+[node name="UI_Cell10" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 360)
+
+[node name="UI_Cell11" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 360)
+
+[node name="UI_Cell12" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 360)
+
+[node name="UI_Cell13" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 360)
+
+[node name="UI_Cell14" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 600)
+
+[node name="UI_Cell15" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 600)
+
+[node name="UI_Cell16" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 600)
+
+[node name="UI_Cell17" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 600)
+
+[node name="UI_Cell18" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 840)
+
+[node name="UI_Cell19" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 840)
+
+[node name="UI_Cell20" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 840)
+
+[node name="UI_Cell21" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 840)
+
+[node name="UI_Cell69" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 1080)
+
+[node name="UI_Cell70" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 1080)
+
+[node name="UI_Cell71" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 1080)
+
+[node name="UI_Cell72" parent="Page Container/UI Page_03/Fill Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 1080)
+
+[node name="Cells" type="Node2D" parent="Page Container/UI Page_03"]
+
+[node name="UI_Cell" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+
+[node name="UI_Cell2" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 0)
+
+[node name="UI_Cell3" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 0)
+
+[node name="UI_Cell4" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 0)
+
+[node name="UI_Cell5" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 0)
+
+[node name="UI_Cell6" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 0)
+
+[node name="UI_Cell7" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 120)
+
+[node name="UI_Cell12" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 120)
+
+[node name="UI_Cell13" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 240)
+
+[node name="UI_Cell18" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 240)
+
+[node name="UI_Cell19" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 360)
+
+[node name="UI_Cell20" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 480)
+
+[node name="UI_Cell21" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 480)
+
+[node name="UI_Cell22" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 480)
+
+[node name="UI_Cell23" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 480)
+
+[node name="UI_Cell24" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 360)
+
+[node name="UI_Cell25" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 480)
+
+[node name="UI_Cell30" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 480)
+
+[node name="UI_Cell31" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 600)
+
+[node name="UI_Cell36" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 600)
+
+[node name="UI_Cell37" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 720)
+
+[node name="UI_Cell38" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 720)
+
+[node name="UI_Cell39" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 720)
+
+[node name="UI_Cell40" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 720)
+
+[node name="UI_Cell41" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 720)
+
+[node name="UI_Cell42" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 720)
+
+[node name="UI_Cell43" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 840)
+
+[node name="UI_Cell48" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 840)
+
+[node name="UI_Cell49" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 960)
+
+[node name="UI_Cell54" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 960)
+
+[node name="UI_Cell55" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(0, 1080)
+
+[node name="UI_Cell56" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 960)
+
+[node name="UI_Cell57" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 960)
+
+[node name="UI_Cell58" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 960)
+
+[node name="UI_Cell59" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 960)
+
+[node name="UI_Cell60" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(600, 1080)
+
+[node name="UI_Cell8" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(120, 240)
+
+[node name="UI_Cell9" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(240, 240)
+
+[node name="UI_Cell10" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(360, 240)
+
+[node name="UI_Cell11" parent="Page Container/UI Page_03/Cells" instance=ExtResource("5_7awsc")]
+position = Vector2(480, 240)
+
+[node name="Button Cells" type="Node2D" parent="Page Container/UI Page_03"]
+
+[node name="UI_Cell_Palette_1" parent="Page Container/UI Page_03/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 120)
+index = "Palette_1"
+
+[node name="UI_Cell_Palette_2" parent="Page Container/UI Page_03/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 360)
+index = "Palette_2"
+
+[node name="UI_Cell_Palette_3" parent="Page Container/UI Page_03/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 600)
+index = "Palette_3"
+
+[node name="UI_Cell_Palette_4" parent="Page Container/UI Page_03/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 840)
+index = "Palette_4"
+
+[node name="UI_Cell_Palette_5" parent="Page Container/UI Page_03/Button Cells" instance=ExtResource("6_r628i")]
+position = Vector2(120, 1080)
+index = "Palette_5"
 
 [node name="UI_Footer" parent="." instance=ExtResource("5_yh8gw")]
 position = Vector2(0, 1280)
@@ -267,7 +692,7 @@ size_flags_vertical = 4
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_vertical = 4
-col_1 = Color(0.294118, 0.568627, 0.886275, 1)
+col_1 = Color(0.235294, 0.690196, 0.384314, 1)
 col_2 = Color(0.313726, 0.886275, 0.764706, 1)
 col_3 = Color(0.960784, 0.647059, 0.141176, 1)
 col_4 = Color(0.811765, 0.00784314, 0.101961, 1)
@@ -277,16 +702,16 @@ custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_vertical = 4
 col_1 = Color(0, 0.701961, 0.666667, 1)
-col_2 = Color(1, 0.431373, 0.380392, 1)
+col_2 = Color(0.592157, 0.423529, 0.984314, 1)
 col_3 = Color(1, 0.607843, 0.239216, 1)
-col_4 = Color(1, 0.878431, 0.341176, 1)
+col_4 = Color(1, 1, 0.286275, 1)
 
 [node name="Cell Select4" parent="Container/Settings Options" instance=ExtResource("4_vui36")]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_vertical = 4
 col_1 = Color(0.976471, 0.772549, 0.305882, 1)
-col_2 = Color(0.568627, 0.745098, 0.435294, 1)
+col_2 = Color(0.946377, 0.528875, 0.701353, 1)
 col_3 = Color(0.337255, 0.466667, 0.560784, 1)
 col_4 = Color(0.976471, 0.262745, 0.27451, 1)
 
@@ -296,7 +721,7 @@ layout_mode = 2
 size_flags_vertical = 4
 col_1 = Color(1, 0.85098, 0, 1)
 col_2 = Color(0.670588, 1, 0.180392, 1)
-col_3 = Color(0, 0.74902, 1, 1)
+col_3 = Color(0.43815, 0.489956, 0.972178, 1)
 col_4 = Color(1, 0.419608, 0.709804, 1)
 
 [node name="Label" type="Label" parent="Container/Settings Options"]

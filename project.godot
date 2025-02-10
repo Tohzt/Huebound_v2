@@ -17,9 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://global.gd"
-Settings="*res://Settings.tscn"
+Global="*res://Global/global.gd"
+Settings="*res://Global/Settings.tscn"
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+TransitionHandler="*res://Global/TransitionHandler.gd"
 
 [display]
 
