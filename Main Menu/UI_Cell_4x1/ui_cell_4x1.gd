@@ -32,26 +32,29 @@ func _ready():
 
 func _process(delta):
 	super._process(delta)
-	if !cell_solid: return
+	if !cell_solid or btn_active: return
 	Global.active_color.clear()
 	
 	if index.contains("Palette"): index = "Palette"
 	match index:
 		"Customize":
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				activate_button()
 				Master.page_container.next_page = 2
 		"Palette":
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				activate_button()
 				print(name)
 				Global.color_palette = palette
 				Master.page_container.next_page = 1
 		"Leaderboard":
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				activate_button()
 				Master.page_container.next_page = 3
 			#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-				#var leaderboard_scene = preload(Global.REFS.Leaderboard)
-				#var leaderboard_instance = leaderboard_scene.instantiate()
-				#get_parent().get_parent().add_child(leaderboard_instance)
+				var leaderboard_scene = preload(Global.REFS.Leaderboard)
+				var leaderboard_instance = leaderboard_scene.instantiate()
+				Master.add_child(leaderboard_instance)
 		"Exit":
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 				get_tree().quit()

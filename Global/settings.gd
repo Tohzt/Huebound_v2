@@ -1,6 +1,7 @@
 class_name SettingsClass
 extends Node
 
-@export_range(0,50) var item_frequency = 10
-@export var cell_size: float = 120
-@export var cell_offset = 0#60
+var item_frequency = 10
+var cell_size: float = 120
+var cell_base = 283
+var cell_offset = 0#60

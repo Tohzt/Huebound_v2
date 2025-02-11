@@ -15,6 +15,7 @@ var color_shaded: Color
 var cell_solid = false
 var slide_speed = randf_range(5.0, 25.0)
 var push_dist = 60
+var btn_active = false  # New flag for button cooldown
 
 
 func _ready():
@@ -35,3 +36,13 @@ func update_solid():
 func _process(delta):
 	position.y = lerp(position.y, pos, delta * slide_speed)
 	update_solid()
+
+# New function to reset the button
+func reset_button():
+	btn_active = false
+
+func activate_button():
+	btn_active = true
+	# Create and start a one-shot timer
+	var timer = get_tree().create_timer(1.0)
+	timer.timeout.connect(reset_button)

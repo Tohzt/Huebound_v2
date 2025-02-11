@@ -8,7 +8,8 @@ extends Node2D
 @onready var light_occluder_2d:LightOccluder2D = $LightOccluder2D
 @onready var cell: StaticBody2D = $StaticBody2D
 var pos_in = position.y
-var pos_out = position.y + 60
+var pos_out = position.y
+var pos_diff = 42#60
 @onready var pos = position.y
 var rumble_timer = 0.0
 var is_rumbling = false
@@ -27,7 +28,7 @@ func _ready():
 	light_occluder_2d.hide()
 	pos = position.y
 	pos_in = pos
-	pos_out = pos + 60
+	pos_out = pos + pos_diff
 	hue = get_tree().get_first_node_in_group("Hue")
 	color = Global.color_palette.pick_random()
 	color_shaded = color

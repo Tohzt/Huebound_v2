@@ -8,7 +8,7 @@ extends Control
 func _ready():
 	input_name.visible = Global.new_record
 	submit_score.visible = Global.new_record
-	nine_patch_rect.modulate = Global.active_color[0]
+	#nine_patch_rect.modulate = Global.active_color[0]
 	submit_score.disabled = true
 
 

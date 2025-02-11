@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cy22vxfxtqr2j"]
 
 [ext_resource type="Script" path="res://Cell/cell.gd" id="1_172ab"]
-[ext_resource type="Texture2D" uid="uid://uujg7g2fd4me" path="res://Cell/src/new_cell.png" id="2_ffhj4"]
 [ext_resource type="Shader" path="res://Shaders/greyscale.gdshader" id="2_rhl8s"]
+[ext_resource type="Texture2D" uid="uid://balne0makmalr" path="res://Cell/src/hd block_square.png" id="3_htgc8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kcdj4"]
 shader = ExtResource("2_rhl8s")
@@ -12,10 +12,10 @@ shader_parameter/contrast = 1.2
 shader_parameter/greyout = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vyyt"]
-size = Vector2(120, 120)
+size = Vector2(120, 113)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4nl0q"]
-polygon = PackedVector2Array(119, -60, 119, 119, 1, 119, 1, -59)
+polygon = PackedVector2Array(119, -43, 119, 121, -1, 121, -1, -43)
 
 [node name="Cell" type="Node2D" groups=["Cell"]]
 top_level = true
@@ -24,14 +24,17 @@ script = ExtResource("1_172ab")
 sh_greyscale = SubResource("ShaderMaterial_kcdj4")
 
 [node name="BlockSprite" type="Sprite2D" parent="."]
-position = Vector2(60, 30)
-texture = ExtResource("2_ffhj4")
+position = Vector2(60, 42)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_htgc8")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(60, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_4vyyt")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(1, 3)
 occluder = SubResource("OccluderPolygon2D_4nl0q")

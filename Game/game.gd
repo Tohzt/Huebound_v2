@@ -23,7 +23,7 @@ func _build_grid():
 			#Spawn Block
 			var cell = Global.REFS.Cell.instantiate()
 			var x_pos =  x*Settings.cell_size + Settings.cell_offset
-			var y_pos = -y*Settings.cell_size - (Settings.cell_size*2.5)
+			var y_pos = -y*Settings.cell_size - Settings.cell_base#(Settings.cell_size*2.5)
 			cell.position = Vector2(x_pos, y_pos)
 			get_node("Cell Container").add_child(cell)
 			if y > 10:

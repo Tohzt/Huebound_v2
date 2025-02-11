@@ -133,7 +133,8 @@ func _physics_process(delta):
 				
 				await get_tree().create_timer(1.0).timeout
 				Global.active_color.clear()
-				get_tree().change_scene_to_file(Global.REFS.Start)
+				#get_tree().change_scene_to_file(Global.REFS.Start)
+				TransitionHandler.fade_out(get_tree().current_scene, Global.REFS.Win_Lose, 0.1, Color.BLACK)
 			
 		#position.y = lerp(position.y, death_pos.y + 60, delta*10)
 		#camera.zoom = lerp(camera.zoom, Vector2(2,2), delta*5)
@@ -327,6 +328,8 @@ func _on_joystick_move_vector(move: Vector2, tap: bool, swipe: Vector2):
 
 func death_to_heuy():
 	if alive:
+		$PointLight2D.enabled = false
+		$PointLight2D.hide()
 		death_pos = position
 		if Global.new_record:
 			Global.new_record = true
