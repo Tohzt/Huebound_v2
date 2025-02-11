@@ -11,14 +11,30 @@ HueBound ToDo
 + Color Selection
 + Fix darkness on load to match non-solid darkness (0.5?)
 
+- Update Button Colors (+refresh on theme chagne)
+- Add More Palettes
+- Update Palette buttons to show colors
+- Mobile Leaderboard Inputs
+- Hide/Disable Exit in browser
+- Update Item assets
+- SOUNDS
+  - Background Music (increase tempo w/ speed)
+  - Blocks Sliding
+  - Jump/Impact
+  - Death Squash/Splat
+  - Item Collection
+  - Ind. Speed increase
+  - Ind. Item Collection
+  - Inc. Item Loss??
+
+
 - UI with Game Assets
 - Death Anim
-  X - (didn't like) - Slow down time as block pushes Hue forward and pops. 
   + Cells lose color
   + Cells rumble on fall 
-  - Recycle chunks downwards. 
   + Hue inner falls uncontrollably while speed ramps back up
   + Hue inner splat animation on ground row
+  -- Recycle chunks downwards. 
 
 + Local high score
 - LB position on win_lose screen
