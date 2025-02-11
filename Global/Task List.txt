@@ -11,6 +11,7 @@ HueBound ToDo
 + Color Selection
 + Fix darkness on load to match non-solid darkness (0.5?)
 
+- Don't light up Hue
 - Update Button Colors (+refresh on theme chagne)
 - Add More Palettes
 - Update Palette buttons to show colors
