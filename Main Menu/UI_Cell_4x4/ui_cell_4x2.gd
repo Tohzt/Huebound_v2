@@ -4,19 +4,26 @@ extends UI_CELL_CLASS
 signal start_pressed
 
 func _ready():
+	$Label.text = index
 	width = 120*4
 	height = 120*2
 	super._ready()
-	var pos_temp = pos_in
-	pos_in = pos_out
-	pos_out += (pos_temp - pos_out)/5
-	var rng = randi_range(1,3)
-	color = Global.color_palette[rng]
+	pos_in = pos_out - 100
+	pos_out = pos_in + push_dist/2.0
+	if index != "Start":
+		pos_out = pos_in - push_dist/2.0
+	#var rng = randi_range(1,3)
+	color = Global.color_palette[0]
 	color_shaded = color
 	modulate = color_shaded.darkened(0.5)
 
+func _set_color():
+	super._set_color()
+	modulate = color
+
 func _process(delta):
 	super._process(delta)
+	offset += 100
 	if !cell_solid: return
 	
 	Global.active_color.clear()

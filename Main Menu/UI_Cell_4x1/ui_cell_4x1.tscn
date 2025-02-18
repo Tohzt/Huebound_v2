@@ -1,14 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyo1yibycig5f"]
+[gd_scene load_steps=6 format=3 uid="uid://dyo1yibycig5f"]
 
 [ext_resource type="Texture2D" uid="uid://c8n57ool0t87i" path="res://Cell/src/new_cel_4x1.png" id="1_1hp8d"]
 [ext_resource type="Script" path="res://Main Menu/UI_Cell_4x1/ui_cell_4x1.gd" id="2_j57a7"]
 [ext_resource type="FontFile" uid="uid://cv7ta3brc7tgo" path="res://UI/OpenDyslexicAlta-Bold.otf" id="3_71bq7"]
+[ext_resource type="Texture2D" uid="uid://ylaax7pj5grh" path="res://Cell/src/rock_block_2tone.png" id="3_c5pka"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4r350"]
+light_mode = 2
 
 [node name="UI_Cell_4x1" type="Sprite2D" groups=["UI_Cells"]]
+material = SubResource("CanvasItemMaterial_4r350")
 texture = ExtResource("1_1hp8d")
 centered = false
-offset = Vector2(0, -160)
+offset = Vector2(0, -60)
 script = ExtResource("2_j57a7")
+
+[node name="cell_1" type="Sprite2D" parent="."]
+position = Vector2(60, 30)
+texture = ExtResource("3_c5pka")
+hframes = 2
+
+[node name="cell_2" type="Sprite2D" parent="."]
+position = Vector2(180, 30)
+texture = ExtResource("3_c5pka")
+hframes = 2
+frame = 1
+
+[node name="cell_3" type="Sprite2D" parent="."]
+position = Vector2(300, 30)
+texture = ExtResource("3_c5pka")
+hframes = 2
+
+[node name="cell_4" type="Sprite2D" parent="."]
+position = Vector2(420, 30)
+texture = ExtResource("3_c5pka")
+hframes = 2
+frame = 1
+
+[node name="cell_long" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -60)
+texture = ExtResource("1_1hp8d")
+centered = false
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8
@@ -16,10 +49,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -136.0
-offset_top = -190.0
-offset_right = 136.0
-offset_bottom = -64.0
+offset_left = -140.0
+offset_top = -92.0
+offset_right = 132.0
+offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)

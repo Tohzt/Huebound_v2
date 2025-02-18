@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cv7ta3brc7tgo" path="res://UI/OpenDyslexicAlta-Bold.otf" id="3_3cd3x"]
 
 [node name="UI_Cell_4x2" type="Sprite2D" groups=["UI_Cells", "start_button"]]
+position = Vector2(0, 100)
 texture = ExtResource("1_ywsli")
 centered = false
 offset = Vector2(0, -160)
@@ -16,14 +17,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -136.0
-offset_top = -200.0
-offset_right = 136.0
-offset_bottom = -74.0
+offset_left = -249.0
+offset_top = -329.0
+offset_right = 249.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -60
 theme_override_fonts/font = ExtResource("3_3cd3x")
 theme_override_font_sizes/font_size = 72
-text = "START"
+text = "Start"
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true

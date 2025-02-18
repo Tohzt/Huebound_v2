@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://y3q547fkfi4g"]
+[gd_scene load_steps=18 format=3 uid="uid://y3q547fkfi4g"]
 
 [ext_resource type="Script" path="res://Game/game.gd" id="1_30xni"]
 [ext_resource type="Script" path="res://Game/Input/input_manager.gd" id="2_cylo2"]
@@ -14,6 +14,15 @@
 [ext_resource type="Texture2D" uid="uid://04ptbalpgfqt" path="res://Item/perks.png" id="10_ktlu3"]
 [ext_resource type="Texture2D" uid="uid://e5vn5j50b7ct" path="res://UI/Button_Theme_64.png" id="10_ocdff"]
 [ext_resource type="PackedScene" uid="uid://chbo41y7mm2a4" path="res://UI/ui_footer.tscn" id="13_ygidy"]
+
+[sub_resource type="Gradient" id="Gradient_61e8p"]
+offsets = PackedFloat32Array(0, 0.678571)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5j3ux"]
+gradient = SubResource("Gradient_61e8p")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5stji"]
 texture = ExtResource("10_ocdff")
@@ -54,6 +63,13 @@ scale = Vector2(22, 1)
 position = Vector2(-330, -640)
 rotation = 1.57079
 scale = Vector2(22, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="Camera2D"]
+position = Vector2(0, -76)
+scale = Vector2(17.1, 17.1)
+color = Color(1, 1, 1, 0.478431)
+energy = 0.25
+texture = SubResource("GradientTexture2D_5j3ux")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

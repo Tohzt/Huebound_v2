@@ -188,7 +188,7 @@ func _swap_colors():
 				cell.color_shaded = cell.color
 				cell.block_sprite.modulate = cell.color
 				if !cell.cell_solid:
-					cell.block_sprite.modulate = cell.color.darkened(0.5)
+					cell.block_sprite.modulate = cell.color.darkened(0.25)
 				color_swapped = true
 			elif cell.cell_grid_pos == hue_grid_pos:
 				cur_color = cell.color  # Immediately update the active color
@@ -197,7 +197,7 @@ func _swap_colors():
 				else:
 					cell.color = _col
 					cell.color_shaded = _col
-					cell.block_sprite.modulate = _col.darkened(0.5)
+					cell.block_sprite.modulate = _col.darkened(0.25)
 				fill.start_animation(cur_color)  # Pass the new color to the animation
 				color_swapped = true
 
@@ -347,7 +347,7 @@ func death_to_heuy():
 	Global.active_color.clear()
 	var cells = get_tree().get_nodes_in_group("Cell")
 	for cell: CellClass in cells:
-		cell.modulate = cell.color.darkened(0.5)
+		cell.modulate = cell.color.darkened(0.25)
 		cell.cell_solid = false
 		cell.update_solid()
 	border.play("Pop")

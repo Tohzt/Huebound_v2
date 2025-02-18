@@ -8,6 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://f7f0uwwjua8q" path="res://Huey/src/hue_outer_pop_3.png" id="6_v4wsi"]
 [ext_resource type="Texture2D" uid="uid://kop4iaqme28i" path="res://Huey/src/hue_inner_pop.png" id="7_05b58"]
 
+[sub_resource type="Gradient" id="Gradient_iuqps"]
+offsets = PackedFloat32Array(0, 0.72619)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m1l8j"]
+gradient = SubResource("Gradient_iuqps")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qgl5h"]
 size = Vector2(2, 2)
 
@@ -197,18 +206,17 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_iuqps"]
-offsets = PackedFloat32Array(0, 0.72619)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_m1l8j"]
-gradient = SubResource("Gradient_iuqps")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [node name="Hue" type="CharacterBody2D" groups=["Hue"]]
 collision_mask = 3
 script = ExtResource("1_vbmsu")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -39)
+energy = 0.5
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_m1l8j")
+texture_scale = 20.0
 
 [node name="Origin" type="Area2D" parent="."]
 position = Vector2(0, -40)
@@ -224,6 +232,7 @@ shape = SubResource("CircleShape2D_5guqr")
 [node name="backfill" type="Sprite2D" parent="."]
 modulate = Color(0.439216, 0.439216, 0.439216, 0.72549)
 top_level = true
+light_mask = 0
 position = Vector2(0, -40)
 texture = ExtResource("2_danpb")
 offset = Vector2(1, 0)
@@ -231,6 +240,7 @@ hframes = 9
 
 [node name="fill" type="Sprite2D" parent="."]
 top_level = true
+light_mask = 0
 position = Vector2(0, -40)
 scale = Vector2(0.285, 0.285)
 texture = ExtResource("3_57imn")
@@ -241,6 +251,7 @@ script = ExtResource("3_kxjvi")
 [node name="border" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.513726)
 top_level = true
+light_mask = 0
 position = Vector2(1, -41)
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_tb85u")
@@ -265,9 +276,3 @@ offset_right = 21.0
 offset_bottom = -19.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(0, -39)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_m1l8j")
-texture_scale = 20.0

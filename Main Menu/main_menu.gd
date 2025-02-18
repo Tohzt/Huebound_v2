@@ -20,8 +20,8 @@ func _handle_mouse() -> void:
 				cell.cell_solid = false
 				var mouse_in =  mouse_pos.x > cell.global_position.x and\
 								mouse_pos.x < cell.global_position.x + cell.width and\
-								mouse_pos.y > cell.global_position.y - 60 and\
-								mouse_pos.y < cell.global_position.y + cell.height - 60
+								mouse_pos.y > cell.global_position.y - cell.offset and\
+								mouse_pos.y < cell.global_position.y + cell.height - cell.offset
 				if mouse_in: 
 					cell.cell_solid = true
 					#Global.active_color.clear()

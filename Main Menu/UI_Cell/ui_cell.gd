@@ -13,7 +13,7 @@ func _ready():
 	
 	time_offset = randf() * PI * 2
 	
-	color = Global.color_palette.pick_random()
+	color = Global.palette_grey.pick_random()
 	color_shaded = color
 	modulate = color_shaded.darkened(0.5)
 	

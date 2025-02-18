@@ -10,13 +10,16 @@ HueBound ToDo
 + Animated Huey
 + Color Selection
 + Fix darkness on load to match non-solid darkness (0.5?)
++ Add More Palettes
++ Update Palette buttons to show colors
++ Update Button Colors/refresh on theme change
++ UI with Game Assets
++ Local high score
+/ Hide/Disable Exit in browser
+/ Splash Screen / Icon
 
-- Don't light up Hue
-- Update Button Colors (+refresh on theme chagne)
-- Add More Palettes
-- Update Palette buttons to show colors
+? (I think I solved this one) Don't light up Hue
 - Mobile Leaderboard Inputs
-- Hide/Disable Exit in browser
 - Update Item assets
 - SOUNDS
   - Background Music (increase tempo w/ speed)
@@ -29,7 +32,6 @@ HueBound ToDo
   - Inc. Item Loss??
 
 
-- UI with Game Assets
 - Death Anim
   + Cells lose color
   + Cells rumble on fall 
@@ -37,11 +39,9 @@ HueBound ToDo
   + Hue inner splat animation on ground row
   -- Recycle chunks downwards. 
 
-+ Local high score
 - LB position on win_lose screen
 - Tell players what the powerups do
 
-- Splash Screen / Icon
 
 X - Lose Joystick sprites after 80-ish rows
     - might have been 80 before new row-based z_index

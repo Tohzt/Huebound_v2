@@ -9,7 +9,7 @@ extends Node2D
 @onready var cell: StaticBody2D = $StaticBody2D
 var pos_in = position.y
 var pos_out = position.y
-var pos_diff = 42#60
+var pos_diff = 60#42
 @onready var pos = position.y
 var rumble_timer = 0.0
 var is_rumbling = false
@@ -24,15 +24,18 @@ var slide_speed = randf_range(5.0, 15.0)
 
 func _ready():
 	block_sprite.material = sh_greyscale
-	light_occluder_2d.sdf_collision = false
-	light_occluder_2d.hide()
+	#light_occluder_2d.sdf_collision = false
+	#light_occluder_2d.hide()
 	pos = position.y
 	pos_in = pos
 	pos_out = pos + pos_diff
 	hue = get_tree().get_first_node_in_group("Hue")
-	color = Global.color_palette.pick_random()
+	var _index = randi() % 4
+	if _index % 2:
+		block_sprite.frame = 1
+	color = Global.color_palette[_index]
 	color_shaded = color
-	block_sprite.modulate = color_shaded.darkened(0.5)
+	block_sprite.modulate = color_shaded.darkened(0.25)
 	var cell_x_pos = floor(global_position.x / Settings.cell_size)
 	var cell_y_pos = abs(floor((global_position.y + 60) / Settings.cell_size)+1)
 	cell_grid_pos = Vector2(cell_x_pos, cell_y_pos)
@@ -54,7 +57,7 @@ func _process(delta):
 			#block_sprite.modulate = color_shaded.darkened(0.25)
 			pass
 		else:
-			block_sprite.modulate = color_shaded.darkened(0.5)
+			block_sprite.modulate = color_shaded.darkened(0.25)
 	
 	# Add rumble effect and increase greyout when Hue is falling to death
 	if !hue.alive and !hue.death_splat:
@@ -75,11 +78,15 @@ func _process(delta):
 		
 		if hue.alive:
 			if cell_solid: 
-				light_occluder_2d.sdf_collision = true
-				light_occluder_2d.show()
-			else: 
-				light_occluder_2d.sdf_collision = false
-				light_occluder_2d.hide()
+				cell.set_collision_layer_value(1, true)
+				light_occluder_2d.set_occluder_light_mask(0b00000000_00000000_00000000_000011)
+				#light_occluder_2d.sdf_collision = true
+				#light_occluder_2d.show()
+			else:
+				cell.set_collision_layer_value(1, false)
+				light_occluder_2d.set_occluder_light_mask(0b00000000_00000000_00000000_000001)
+				#light_occluder_2d.sdf_collision = false
+				#light_occluder_2d.hide()
 			
 			if block_sprite.material != sh_greyscale: return
 			var current_greyout = block_sprite.material.get_shader_parameter("greyout")
@@ -90,7 +97,7 @@ func _process(delta):
 	var current_speed = slide_speed * (0.5 if is_rumbling else 1.0)
 	position.y = lerp(position.y, pos, delta * current_speed)
 	
-	cell.set_collision_layer_value(1, cell_solid)
+	#_cell.set_collision_layer_value(1, cell_solid)
 
 func update_solid():
 	if Global.active_color.has(color.darkened(0.0)):
@@ -100,6 +107,6 @@ func update_solid():
 		if cell_grid_pos == hue.hue_grid_pos:
 			hue.death_to_heuy()
 	else:
-		block_sprite.modulate = color_shaded.darkened(0.5)
+		block_sprite.modulate = color_shaded.darkened(0.25)
 		cell_solid = false
 		pos = pos_in

@@ -22,9 +22,8 @@ var palette_2: Array[Color] = [Color("#00b3aa"), Color("#ff6e61"), Color("#ff9b3
 var palette_3: Array[Color] = [Color("#f9c54e"), Color("#91be6f"), Color("#56778f"), Color("#f94346")]#, Color("#f187b3")] 
 var palette_4: Array[Color] = [Color("#ffd900"), Color("#abff2e"), Color("#00bfff"), Color("#ff6bb5")]#, Color("#707df8")] 
 var palette_5: Array[Color] = [Color(randf(), randf(), randf(), 1), Color(randf(), randf(), randf(), 1), Color(randf(), randf(), randf(), 1), Color(randf(), randf(), randf(), 1)] 
-
-var color_palette: Array[Color] = palette_default
 var palette_grey: Array[Color] = [Color("#4c4c4c"),Color("#848484"),Color("#dddddd"),Color("#bcbcbc")]
+var color_palette: Array[Color] = palette_default
 var active_color: Array[Color] = [] 
 
 var height = 0

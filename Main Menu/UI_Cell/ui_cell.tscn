@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ggbkdw232kmx"]
 
-[ext_resource type="Texture2D" uid="uid://uujg7g2fd4me" path="res://Cell/src/new_cell.png" id="1_11isq"]
 [ext_resource type="Shader" path="res://Main Menu/UI_Cell/ui_cell.gdshader" id="1_66bir"]
+[ext_resource type="Texture2D" uid="uid://ylaax7pj5grh" path="res://Cell/src/rock_block_2tone.png" id="2_77p1g"]
 [ext_resource type="Script" path="res://Main Menu/UI_Cell/ui_cell.gd" id="2_xh3pq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fb0tl"]
@@ -9,13 +9,15 @@ shader = ExtResource("1_66bir")
 shader_parameter/weighted = true
 shader_parameter/brightness = 0.2
 shader_parameter/contrast = 1.2
-shader_parameter/greyout = 1.0
+shader_parameter/greyout = 0.0
 
 [node name="UI_Cell" type="Sprite2D" groups=["UI_Cells"]]
 material = SubResource("ShaderMaterial_fb0tl")
-texture = ExtResource("1_11isq")
+position = Vector2(3, 99)
+texture = ExtResource("2_77p1g")
 centered = false
 offset = Vector2(0, -160)
+hframes = 2
 script = ExtResource("2_xh3pq")
 
 [node name="Label" type="Label" parent="."]

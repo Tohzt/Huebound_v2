@@ -17,7 +17,6 @@ func _build_grid():
 	if !Global.add_chunk: return
 	var yy = num_rows
 	var xx = num_cols
-	
 	for y in yy:
 		for x in xx:
 			#Spawn Block

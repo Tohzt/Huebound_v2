@@ -22,6 +22,6 @@ func _set_page(_next_page: int) -> void:
 		1:
 			offset_position = 0.0
 		2:
-			offset_position = -600.0
+			offset_position = -720.0
 		3:
 			offset_position = 720.0
